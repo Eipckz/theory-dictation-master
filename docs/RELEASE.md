@@ -1,18 +1,14 @@
-# Theory Dictation Master v1.1.0: keys, modes and meter
+# v1.1.1: clearer piano note endings
 
-**[Open the app](https://eipckz.github.io/theory-dictation-master/)**
+**[Open Theory Dictation Master](https://eipckz.github.io/theory-dictation-master/)**
 
-- 189 spelled keys and modes, including all conventional major/minor keys, enharmonic alternatives, harmonic and melodic minor, and the church modes.
-- Double sharps/flats with automatic spelling and matching tonic references.
-- 160 meters: numerators 1 through 32 over 1, 2, 4, 8 and 16.
-- Custom additive grouping, including 2+2+3 and 3+2+2 in 7/8.
-- Count-ins, clicks, beaming, grids, tempo labels, printing and progress comparisons follow the selected grouping.
-- 18 lessons and an octave-wide upper difficulty range.
+Piano notes now retain a quiet sustained harmonic body after the recorded attack decays. Held notes remain audible until a short, click-free fade reaches exact silence at the written release. This makes quarter-note-plus-rest patterns easier to distinguish from held half notes.
 
-Entry stays silent. Piano and mixed instruments, offline caching, review, private sync, backups and recovery remain included. Existing progress is preserved. Use the update banner, or close app tabs and reopen, to activate the cached release.
+- Same improvement in live playback and WAV export.
+- No artificial cutoff click or additional answer cue.
+- Ties remain continuous; rests remain silent.
+- Silent notation entry, existing progress, all keys/meters and private sync are preserved.
 
-The [README](https://github.com/Eipckz/theory-dictation-master#readme) explains all pitch collections, meter rules, controls and sync setup. The ZIP is the standalone website; its SHA-256 file verifies the download.
+This is a deliberately clarified teaching piano sound. Grading still distinguishes a held note from a rest. Tests cover the reported C4 example at three sample rates, long holds beyond sample duration, tied notes and silent rest intervals.
 
-Boundaries: melodic minor uses raised 6/7 in both directions. Notation prints explicit accidentals rather than key signatures. 32nd/64th-note denominators, tuplets, irrational meters and changing meter within a phrase remain outside this release. Advanced harmony and polyphonic dictation are still future modules.
-
-Validation includes 29 core tests, all 30,240 key/meter combinations, 1,120 four-bar meter/difficulty cases and browser regression tests. See GitHub Actions for deployment results. Automated tests do not certify physical speaker quality or educational efficacy.
+Use **Save and update** when offered. Browsers still on v0.2.1 need an online reload followed by closing all app tabs and reopening. The ZIP contains the static website; verify it with the accompanying SHA-256 file.

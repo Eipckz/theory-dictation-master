@@ -15,6 +15,14 @@ Practice melodic dictation on a computer, tablet, or phone. Nothing to install. 
 
 </div>
 
+## New in 1.1.1: clearer note endings
+
+Piano playback now combines the recorded attack with a quiet sustained harmonic body. This keeps held notes audible even after the recording naturally decays. Both layers fade to exact silence over the final 8 milliseconds or less of the written note. No release click or answer cue is added. Live playback and WAV export use the same sound.
+
+For example, a quarter-note C followed by two quarter rests now has a clear stop after beat 1. A half-note C remains audible through beat 2. Their durations are still assessed differently. Ties remain one continuous held sound. This is a teaching piano sound, not an unmodified acoustic-piano recording.
+
+If your browser still shows 0.2.1, reload online, then close all app tabs and reopen. Newer versions offer **Save and update**. Browser progress is preserved.
+
 ## New in 1.1.0: keys, modes and meter
 
 - **189 spelled keys and modes:** seven note letters, each natural/flat/sharp, across nine collections. Includes all conventional major and minor keys, enharmonic alternatives and theoretical keys using double accidentals.

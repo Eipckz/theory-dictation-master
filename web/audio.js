@@ -26,7 +26,15 @@ export function render(score,support='countin',rate=44100,piano=null){
   const start=Math.round(e.time*rate),n=Math.floor(e.duration*rate),f=440*2**((e.midi-69)/12),gain=e.gain??1;
   if(instrument==='piano'){
    const root=ROOTS.reduce((best,r)=>Math.abs(r-e.midi)<Math.abs(best-e.midi)?r:best),data=piano[root],ratio=22050/rate*2**((e.midi-root)/12);
-   for(let i=0;i<n;i++){const pos=i*ratio,index=Math.floor(pos);if(index+1>=data.length)break;const wave=data[index]+(data[index+1]-data[index])*(pos-index),release=Math.min(1,(n-i)/Math.max(1,.018*rate));out[start+i]+=.6*gain*wave*release;}
+   // Keep a quiet harmonic body audible after the recorded attack decays.
+   // Both layers stop at the written release, including when the sample ends early.
+   const releaseSamples=Math.max(2,Math.min(Math.round(.008*rate),Math.floor(n/4)));
+   for(let i=0;i<n;i++){
+    const t=i/rate,pos=i*ratio,index=Math.floor(pos),wave=index+1<data.length?data[index]+(data[index+1]-data[index])*(pos-index):0;
+    const body=.09*(Math.sin(2*Math.PI*f*t)+.22*Math.sin(4*Math.PI*f*t)+.08*Math.sin(6*Math.PI*f*t))*Math.min(1,t/.04);
+    const release=Math.min(1,(n-1-i)/(releaseSamples-1));
+    if(start+i<out.length)out[start+i]+=gain*(.6*wave+body)*release;
+   }
   }else{
    const harmonics=instrument==='clarinet'?[1,.03,.55,.02,.25,.01,.1]:[1,.16,.06,.02],attack=instrument==='clarinet'?.015:.025;
    for(let i=0;i<n;i++){const t=i/rate,envelope=Math.min(1,t/attack)*Math.min(1,(e.duration-t)/.02);let wave=0;for(let h=1;h<=harmonics.length;h++)if(f*h<rate/2)wave+=harmonics[h-1]*Math.sin(2*Math.PI*f*h*t);out[start+i]+=.19*gain*wave*envelope;}
