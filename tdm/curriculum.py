@@ -1,0 +1,35 @@
+"""Small sequential lessons. Guided examples never establish mastery."""
+LESSONS=[
+ ('First marks on the staff',
+  'A staff has five lines. Notes higher on it sound higher. In treble clef, the bottom line is E4; middle C is on a short ledger line below. A note makes sound; a rest marks silence. Choose Quarter, click the staff to add a note, select it, then use Up or Down to move it. Delete removes it; Ctrl+Z undoes the change. This tutorial is ungraded.',
+  ['1','1','2'],[28,29,28],0),
+ ('Pulse is the ruler; rhythm is the pattern',
+  'The pulse repeats steadily. Rhythm tells you when sounds start and how long they last. In this 4/4 example the quarter note is one beat, a half note two beats, and a whole note four. Silently conduct through sustained sounds. The half note continues across two beats with one attack. Count internally. Speed alone does not identify a written value.',
+  ['1','2','1'],[28,28,28],0),
+ ('Carry rhythm through a pitch change',
+  'Listen to the whole phrase, noticing both its attacks and its direction. Retain the rhythm while two pitches alternate. Record any pitch landmark you recognize immediately. You can choose Unknown pitch to sketch the rhythm first. After your attempt, hear the same rhythm on C and reconnect it to the pitched phrase.',
+  ['1','2','1'],[28,29,28],1),
+ ('Three notes, one small phrase',
+  'C, D and E are scale degrees 1, 2 and 3 in C major. Notice contour and retain the phrase as a small group. You do not need to calculate an interval for each pair. Mark an uncertain note with a question mark and keep following the phrase. Resolve the uncertainty during writing time.',
+  ['2','1','1'],[28,29,30],2),
+ ('Divide the beat into two',
+  'Two eighth notes divide one quarter-note beat evenly. Think 1 and, 2 and internally. Fast sounds are not automatically eighth notes: the beat unit and tempo decide the written relationship. This example begins with two eighths, then a quarter, then a half note. Keep the same pulse through changing pitches.',
+  ['1/2','1/2','1','2'],[28,29,30,28],3),
+ ('Landmarks across a wider contour',
+  'In C major, C is tonic (1) and G is dominant (5). Mark a clear landmark without dropping the rhythm. Listen for repetition, direction and phrase groups. Compare rhythm-first and whole-phrase approaches on different examples at the same settings. Neither strategy is a permanent rule.',
+  ['1','1','2'],[28,30,32],4),
+ ('Dots, rests and silent subdivision',
+  'A dot adds half the original value: a dotted half lasts three quarter-note beats; a dotted quarter lasts one and a half. A rest is an intentional silence with a duration. Maintain internal subdivision through both rests and sustained notes. A final note has a controlled release here, so its duration can be heard.',
+  ['3/2','1/2','2'],[28,-1,30],5),
+ ('Sixteenth rhythm cells',
+  'In a quarter-note beat, sixteenths fall at 1 e & a. Eighth-sixteenth-sixteenth attacks at 1, &, a; sixteenth-eighth-sixteenth at 1, e, a; dotted-eighth-sixteenth at 1, a. Three sixteenths plus an eighth total 5/4 quarter-note beats, not one beat. The reverse dotted pattern attacks at 1, e. Isolate a confusion briefly, then return it to a pitched melody.',
+  ['3/2','1/2','3/4','1/4','1/2','1/4','1/4'],[28,29,30,29,28,29,28],6),
+ ('Ties and paper transfer',
+  'A tie joins adjacent notes of the same pitch into one sustained sound. Two tied quarters may sound like one half note; two untied quarters have two attacks. On paper, prepare key, meter and barlines. Mark attacks, contour and scale-degree landmarks. Switch to count-in only, then use Paper mode. Enter your paper answer before revealing the key for a scored attempt, or label it a self-check afterward.',
+  ['2','1','1'],[28,30,28],6),
+]
+LEVEL_NAMES=['One-pitch durations','Two-pitch rhythm bridge','Three-pitch integration','Eighth-note division','Wider pitch landmarks','Dotted values and rests','Sixteenth-note cells']
+PLANS=[
+ ('Day 1: establish your process','Start with the ungraded editor tutorial and pulse lesson. Complete short sequential checks. Try the two-pitch bridge, then an integrated phrase. Save a baseline under settings you can repeat. Use 15 to 25 minute blocks with breaks.'),
+ ('Day 2: reconnect and reduce support','Review unfamiliar examples at yesterday\'s settings. Target the recurring rhythm confusion in a pitched phrase. Change one setting, such as tempo or continuing clicks. Add a paper block when ready.'),
+ ('Day 3: check independence','Repeat the baseline conditions with unfamiliar phrases. Compare rhythm, pitch, hearings and assistance. Try a short one-hearing phrase at an earned level. Keep reviewing afterward; the date does not promote you.')]
