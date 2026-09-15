@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 const key='theory-dictation-master.web.v1';
-test.beforeEach(async({page})=>{await page.addInitScript(()=>{window.audioStarts=0;if(!globalThis.AudioBufferSourceNode)return;const original=AudioBufferSourceNode.prototype.start;AudioBufferSourceNode.prototype.start=function(...args){window.audioStarts++;return original.apply(this,args);};});await page.goto('/');});
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{window.audioStarts=0;if(!globalThis.AudioBufferSourceNode)return;const original=AudioBufferSourceNode.prototype.start;AudioBufferSourceNode.prototype.start=function(...args){window.audioStarts++;return original.apply(this,args);};});await page.goto('./');});
 test('silent editing, persistence, real explicit audio, assessment and reset',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.locator('[data-page="practice"]').click();await expect(page.locator('#score svg')).toBeVisible();await expect(page.locator('#target-tab')).toBeHidden();

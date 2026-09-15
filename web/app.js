@@ -108,7 +108,7 @@ on('sync-now','click',async()=>{
 on('disconnect-sync','click',()=>{$('sync-token').value='';$('sync-status').textContent='Disconnected. The token was removed from this page.';});
 on('reset-progress','click',()=>{
  if(!confirm('Reset all attempts, lessons and drafts in this browser? Sync afterward to apply the reset to your other devices.'))return;
- stop();state={...fresh(),resetAt:Date.now()};session=null;targetView=false;paperEntry=false;selected=-1;undo=[];redo=[];recovery=null;localStorage.removeItem(KEY+'.recovery');$('level').value='0';newSession();renderSettings();notice('Progress reset. You are starting fresh. Sync now to reset your cloud copy too.');
+ stop();state={...fresh(),resetAt:Date.now()};session=null;targetView=false;paperEntry=false;selected=-1;undo=[];redo=[];recovery=null;localStorage.removeItem(KEY+'.recovery');for(const [id,value] of Object.entries({level:'0',bpm:'80',bars:'1',mode:'practice',support:'beat',hearings:'4',duration:'12',accidental:'0'}))$(id).value=value;for(const id of ['rhythm-only','dot','rest','unknown'])$(id).checked=false;document.body.classList.remove('light');newSession();renderSettings();notice('Progress reset. You are starting fresh. Sync now to reset your cloud copy too.');
 });
 window.addEventListener('pagehide',()=>{stop();persist();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&busy)stop();});player.onInterrupt=()=>{stop();notice('Playback was interrupted. The hearing is marked assisted; your notation is saved.');};
 window.addEventListener('error',e=>notice('Something went wrong: '+e.message));window.addEventListener('unhandledrejection',e=>notice('Something went wrong: '+(e.reason?.message??e.reason)));
