@@ -10,3 +10,5 @@ body.light{color-scheme:light;--bg:#f6f1e5;--side:#e6e9dc;--panel:#fcf9f1;--inpu
 #grouping{min-height:44px;width:100%;min-width:0;background:var(--input);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:8px 12px}
 @media(max-width:720px){#practice{padding-bottom:90px}.playback-bar{position:fixed;left:16px;right:16px;bottom:0;z-index:5;margin-top:0}#notice{z-index:6}.settings-grid #meter-help{grid-column:1/-1}}
 #meter-help,#phrase-context,#review-list p,#comparisons p{overflow-wrap:anywhere;min-width:0}
+
+.answer-comparison{min-width:0;margin:24px 0}.answer-comparison h3{font-size:23px;margin:0 0 12px}.answer-comparison .paper-scroll{border-radius:8px;margin-bottom:12px}.answer-comparison button{margin-top:8px}

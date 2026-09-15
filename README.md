@@ -15,6 +15,10 @@ Practice melodic dictation on a computer, tablet, or phone. Nothing to install. 
 
 </div>
 
+## New in 1.1.2: immediate answer comparison
+
+After **Submit**, feedback automatically shows **Your answer**, followed by **Correct answer**, with both staves visible together. Each has a separate listening button. This works in Practice, Assessment and entered Paper answers, including incomplete submissions. Paper self-checks show the correct notation and explain when no digital answer was entered. The comparison survives reload and clears on the next phrase. It never starts audio automatically or reveals an unfamiliar answer before submission.
+
 ## New in 1.1.1: clearer note endings
 
 Piano playback now combines the recorded attack with a quiet sustained harmonic body. This keeps held notes audible even after the recording naturally decays. Both layers fade to exact silence over the final 8 milliseconds or less of the written note. No release click or answer cue is added. Live playback and WAV export use the same sound.

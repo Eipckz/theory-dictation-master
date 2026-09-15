@@ -47,7 +47,7 @@ function renderPractice(){if(!session)return;document.querySelectorAll('[data-pi
  $('hear').disabled=busy||(!session.submitted&&(session.awaitingDraft||session.exposures>=p.hearings));$('hear').textContent=session.submitted?'Replay target':'Hear phrase';$('submit').disabled=session.submitted||busy||session.completed===0;$('save-draft').disabled=session.submitted||busy||!session.awaitingDraft;
  $('depitch').disabled=busy||(p.mode!=='practice'&&!session.submitted);$('play-answer').disabled=busy||!session.answer.length||(p.mode!=='practice'&&!session.submitted);$('tonic').disabled=busy;$('stop').disabled=!busy;
  $('print-key').hidden=!session.submitted;$('confidence').disabled=session.submitted;$('feedback-card').hidden=!session.submitted;
- showStaff();if(session.submitted)renderFeedback();
+ showStaff();if(session.submitted)renderFeedback();else $('submission-comparison').replaceChildren();
 }
 function checkpoint(){undo.push(clone(session.answer));undo=undo.slice(-100);redo=[];}
 function edited(){state.updatedAt=Date.now();session.answer=reflow(session.answer);persist();showStaff();$('play-answer').disabled=!session.answer.length||(session.policy.mode!=='practice'&&!session.submitted);}
@@ -69,7 +69,14 @@ function submit(){if(session.submitted||busy||session.completed===0)return;saveD
  if(independent(a)&&a.result.integrated>=.9&&a.lesson!==null){const id=String(a.lesson),seen=state.lessonPasses[id]??[];if(!seen.includes(a.fingerprint))seen.push(a.fingerprint);state.lessonPasses[id]=seen;}
  const p=progression(state.attempts,a);if(p.action==='advance'&&session.target.level===state.earnedLevel)state.earnedLevel=Math.min(6,state.earnedLevel+1);persist();renderPractice();$('feedback-card').scrollIntoView({block:'start'});if(blockEnd&&Date.now()>=blockEnd)notice('Your planned block is complete. This is a good point for a break. Your progress is saved.');
 }
-function renderFeedback(){const r=session.result;$('scores').innerHTML='';$('feedback').replaceChildren();if(!r){$('feedback-title').textContent='Paper self-check';$('feedback').textContent='Your handwriting has not been graded. Compare attacks, durations, rests and pitch landmarks against the target. This self-check cannot establish independent mastery.';$('adaptation').textContent='';return;}
+function renderFeedback(){
+ const comparison=$('submission-comparison');comparison.replaceChildren();
+ for(const [label,id,events,playId] of [['Your answer','submitted-answer',session.answer,'play-answer'],['Correct answer','correct-answer',session.target.events,'hear']]){
+  const section=document.createElement('section');section.className='answer-comparison';section.id=id;const heading=document.createElement('h3');heading.textContent=label;section.append(heading);
+  if(events.length){const paper=document.createElement('div');paper.className='paper-scroll';paper.innerHTML=staffSVG({...session.target,events},{readonly:true,grid:true,title:label});section.append(paper);}else{const empty=document.createElement('p');empty.textContent=session.result?'No notes were entered.':'Your answer is on paper; no digital transcription was entered.';section.append(empty);}
+  const button=document.createElement('button');button.textContent=label==='Your answer'?'Listen to your answer':'Listen to correct answer';button.disabled=busy||!events.length;button.addEventListener('click',()=>$(playId).click());section.append(button);comparison.append(section);
+ }
+ const r=session.result;$('scores').innerHTML='';$('feedback').replaceChildren();if(!r){$('feedback-title').textContent='Paper self-check';$('feedback').textContent='Your handwriting has not been graded. Compare attacks, durations, rests and pitch landmarks against the target. This self-check cannot establish independent mastery.';$('adaptation').textContent='';return;}
  $('feedback-title').textContent='Your listening evidence.';for(const [title,value] of [['Attack timing',r.attacks],['Durations / rests',r.durations],['Pitch sequence',r.pitch],['Barline grouping',r.notation],['Integrated',r.integrated]]){const card=document.createElement('div');card.className='score-card';const strong=document.createElement('strong'),span=document.createElement('span');strong.textContent=pct(value);span.textContent=title;card.append(strong,span);$('scores').append(card);}
  const ul=document.createElement('ul');for(const msg of [...r.feedback,...r.issues]){const li=document.createElement('li');li.textContent=msg;ul.append(li);}$('feedback').append(ul);
  const rec=state.attempts.find(a=>a.id===session.id),p=rec?progression(state.attempts,rec):{count:0,action:'consolidate'};$('adaptation').textContent=`${rec?.kind??'saved'} evidence. ${p.count} comparable unfamiliar independent items. Recommendation: ${p.action}. Advance after two blocks of eight with at least seven passes per block and every assessed listening component at least 90%.`;
