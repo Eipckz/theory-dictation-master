@@ -1,5 +1,5 @@
 // Exact integer score time: 12 ticks per quarter; a sixteenth is 3 ticks.
-export const VERSION='1.1.2';
+export const VERSION='1.1.3';
 export const Q=12;
 export const SCALES={major:[0,2,4,5,7,9,11],minor:[0,2,3,5,7,8,10],'harmonic minor':[0,2,3,5,7,8,11],'melodic minor':[0,2,3,5,7,9,11],dorian:[0,2,3,5,7,9,10],phrygian:[0,1,3,5,7,8,10],lydian:[0,2,4,6,7,9,11],mixolydian:[0,2,4,5,7,9,10],locrian:[0,1,3,5,6,8,10]};
 const NATURAL=[0,2,4,5,7,9,11];
@@ -61,15 +61,17 @@ export function validate(score,rhythmOnly=false){
  if(!score.events.length)issues.push('The answer is empty.');return [...new Set(issues)];
 }
 export function sounding(events){const out=[];for(let i=0;i<events.length;i++){let e=events[i],duration=e.duration??0,onset=e.onset;while(e.tie&&events[i+1]&&midi(e)!==null&&midi(e)===midi(events[i+1])&&events[i+1].onset===e.onset+(e.duration??0)){e=events[++i];duration+=e.duration??0;}out.push({...e,onset,duration,tie:false});}return out;}
+// Listening hears a continuous span of silence, not the number of rest symbols.
+export function listeningEvents(events){const out=[];for(const e of sounding(events)){const previous=out.at(-1);if(previous?.rest&&e.rest&&previous.duration>0&&e.duration>0&&previous.onset+previous.duration===e.onset)previous.duration+=e.duration;else out.push({...e});}return out;}
 export function align(a,b){
  const m=a.length,n=b.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0)),w=Array.from({length:m+1},()=>Array(n+1).fill(1));
  for(let i=0;i<=m;i++)d[i][0]=i;for(let j=0;j<=n;j++)d[0][j]=j;
  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){const costs=[d[i-1][j-1]+(midi(a[i-1])!==midi(b[j-1])?1:0),d[i-1][j]+1,d[i][j-1]+1],best=Math.min(...costs);d[i][j]=best;w[i][j]=Math.min(2,[w[i-1][j-1],w[i-1][j],w[i][j-1]].reduce((s,x,k)=>s+(costs[k]===best?x:0),0));}
  return {edits:d[m][n],ambiguous:w[m][n]>1};
 }
-function overlap(a,b){const x=new Set(a),y=new Set(b);return 2*[...x].filter(v=>y.has(v)).length/Math.max(1,x.size+y.size);}
+function overlap(a,b){const x=new Set(a),y=new Set(b);if(!x.size&&!y.size)return 1;return 2*[...x].filter(v=>y.has(v)).length/Math.max(1,x.size+y.size);}
 export function grade(target,answer,rhythmOnly=false){
- const t=sounding(target.events),a=sounding(answer.events),tn=t.filter(e=>!e.rest),an=a.filter(e=>!e.rest);
+ const t=listeningEvents(target.events),a=listeningEvents(answer.events),tn=t.filter(e=>!e.rest),an=a.filter(e=>!e.rest);
  const attacks=overlap(tn.map(e=>e.onset),an.map(e=>e.onset));
  const durations=overlap(t.map(e=>`${e.onset}/${e.duration}/${e.rest}`),a.map(e=>`${e.onset}/${e.duration}/${e.rest}`));
  const alignment=align(tn,an),pitch=rhythmOnly?null:Math.max(0,1-alignment.edits/Math.max(1,tn.length,an.length));
@@ -81,6 +83,7 @@ export function grade(target,answer,rhythmOnly=false){
  if(attacks===1&&durations<1)feedback.push('Attacks line up. Check note releases, rests, and sustained lengths.');
  if(pitch!==null&&pitch<1)feedback.push(`Pitch sequence needs ${alignment.edits} edit(s). Retain your rhythm while checking contour and landmarks.`);
  if(alignment.ambiguous&&!rhythmOnly)feedback.push('Several pitch alignments fit. A precise note-by-note pitch diagnosis would be uncertain.');
+ if(durations===1&&JSON.stringify(target.events.filter(e=>e.rest).map(e=>[e.onset,e.duration]))!==JSON.stringify(answer.events.filter(e=>e.rest).map(e=>[e.onset,e.duration])))feedback.push('Your rest grouping differs, but it represents the same silence and receives full listening credit. The correct-answer staff shows one way to write it.');
  if(integrated===1)feedback.push('The assessed sound matches. Try a new phrase at the same settings.');
  return {attacks,durations,pitch,notation,integrated,complete,feedback,issues,ambiguous:alignment.ambiguous,version:VERSION};
 }

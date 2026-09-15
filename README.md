@@ -15,6 +15,12 @@ Practice melodic dictation on a computer, tablet, or phone. Nothing to install. 
 
 </div>
 
+## New in 1.1.3: equivalent rests receive equal credit
+
+Listening assessment merges adjacent rests into their continuous silence. Two quarter rests equal one half rest; four quarter rests equal a whole rest in 4/4 when they occupy the same span. Splitting or combining silence does not change duration accuracy. A held note is still different from silence, and moving a rest changes the rhythm.
+
+Written barline grouping remains separate notation feedback. The displayed correct answer is one valid spelling, not the only acceptable arrangement of rest symbols. Existing saved attempts are regraded on load, so past rest-segmentation penalties are corrected without deleting progress. Empty or unfinished answers still cannot pass.
+
 ## New in 1.1.2: immediate answer comparison
 
 After **Submit**, feedback automatically shows **Your answer**, followed by **Correct answer**, with both staves visible together. Each has a separate listening button. This works in Practice, Assessment and entered Paper answers, including incomplete submissions. Paper self-checks show the correct notation and explain when no digital answer was entered. The comparison survives reload and clears on the next phrase. It never starts audio automatically or reveals an unfamiliar answer before submission.
