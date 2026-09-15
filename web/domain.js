@@ -1,5 +1,5 @@
 // Exact integer score time: 12 ticks per quarter; a sixteenth is 3 ticks.
-export const VERSION='0.2.0';
+export const VERSION='0.2.1';
 export const Q=12;
 export const LEVELS=['One-pitch durations','Two-pitch rhythm bridge','Three-pitch integration','Eighth-note division','Wider pitch landmarks','Dotted values and rests','Sixteenth-note cells'];
 export const DURATIONS=[['Whole',48],['Half',24],['Quarter',12],['Eighth',6],['Sixteenth',3],['Unknown',null]];
@@ -53,10 +53,11 @@ export function grade(target,answer,rhythmOnly=false){
  return {attacks,durations,pitch,notation,integrated,complete,feedback,issues,ambiguous:alignment.ambiguous,version:VERSION};
 }
 export const independent=a=>a.kind==='independent'&&!a.assistance.length&&a.audioOK&&a.result?.complete;
-export const comparable=a=>JSON.stringify([a.target.level,a.target.bpm,a.target.bars,a.policy.mode,a.policy.support,a.policy.hearings,a.policy.rhythmOnly]);
+export const comparable=a=>JSON.stringify([a.target.level,a.target.bpm,a.target.bars,a.policy.mode,a.policy.support,a.policy.hearings,a.policy.rhythmOnly,a.target.instrument||'piano',a.target.reference||'none']);
 export function progression(attempts,current){const seen=new Set(),rows=attempts.filter(a=>{if(!independent(a)||comparable(a)!==comparable(current)||seen.has(a.fingerprint))return false;seen.add(a.fingerprint);return true;});const pass=a=>Math.min(a.result.attacks,a.result.durations,a.result.pitch??1)>=.9,last=rows.slice(-16);return {count:rows.length,action:last.length===16&&[0,8].every(i=>last.slice(i,i+8).filter(pass).length>=7)?'advance':rows.length>=5&&rows.slice(-5).reduce((s,a)=>s+a.result.integrated,0)/5<.7?'support':'consolidate'};}
 export function validateScore(s){
  if(!s||s.meter!=='4/4'||!Number.isInteger(s.bars)||s.bars<1||s.bars>4||!Number.isInteger(s.level)||s.level<0||s.level>6||!Number.isFinite(s.bpm)||s.bpm<40||s.bpm>160||!Array.isArray(s.events)||s.events.length>128)throw Error('Invalid score in backup.');
+ if(s.instrument!==undefined&&!['piano','flute','clarinet'].includes(s.instrument))throw Error('Invalid instrument.');if(s.soundMode!==undefined&&!['piano','flute','clarinet','mixed'].includes(s.soundMode))throw Error('Invalid instrument mode.');if(s.reference!==undefined&&!['none','pitch','chord','first'].includes(s.reference))throw Error('Invalid tonal reference.');
  for(const e of s.events){if(!Number.isInteger(e.onset)||e.onset<0||e.onset>1536||(e.duration!==null&&(!Number.isInteger(e.duration)||e.duration<1||e.duration>72))||(e.step!==null&&(!Number.isInteger(e.step)||e.step<21||e.step>49))||![-1,0,1].includes(e.acc)||typeof e.rest!=='boolean'||typeof e.tie!=='boolean')throw Error('Invalid note in backup.');}
  return s;
 }

@@ -80,7 +80,17 @@ Hearing allowances apply before submission. Replays after feedback are review. A
 | Count-in only | Four clicks, then the phrase alone |
 | No clicks | Phrase without a count-in or continuing metronome |
 
-There is no animated beat cursor. The optional beat grid is static and disabled in assessments/paper mode. Generated audio uses a local harmonic synthesizer; no samples, microphone, streaming service or API key is needed for listening.
+There is no animated beat cursor. The optional beat grid is static and disabled in assessments/paper mode. Grand piano is the default for phrases, worked lessons, references, answer playback and WAV exports. It uses bundled recordings of a Yamaha C5 from Alexander Holm's Salamander Grand Piano. The browser loads those samples once and caches them for offline use. Flute and clarinet use synthesized timbres. No microphone, streaming account or audio API key is needed.
+
+### Train across instruments and starting references
+
+![Instrument and reference setup](docs/media/web-audio-setup.png)
+
+Open **Set up the next phrase**. Choose **Grand piano** for normal practice, **Mixed instruments** to rotate piano/flute/clarinet without immediately repeating the previous instrument, or a fixed flute/clarinet. Click Next phrase to apply. An instrument stays fixed for the entire phrase, its replays and grading. Changing the selector or entering notes never plays sound.
+
+Choose a **Starting reference**: tonic pitch C, C-major chord (C/E/G together), the first melody note, or none. Each hearing plays the reference for 1.2 seconds, leaves 0.6 seconds of silence, then gives the selected count-in and phrase. The reference does not occupy a beat in your answer. It is included in WAV exports. A separate tonic button is an extra aid and marks the attempt assisted.
+
+Begin with piano, a starting pitch or chord, and short phrases. Increase melody difficulty when comparable accuracy supports it. Later change timbre or remove the reference while keeping the other conditions stable. Reference and instrument are stored with every exercise and are part of comparison groups, so a supported piano result does not masquerade as unsupported mixed-instrument evidence. Lessons use piano plus a tonic reference.
 
 ## Assessment and feedback
 
@@ -150,7 +160,7 @@ After an online visit finishes caching, the service worker can reload the app of
 
 ## Current scope and limits
 
-- Web v0.2.0: single-line dictation in C major, treble clef, 4/4, 1 to 4 bars, 40 to 160 BPM.
+- Web v0.2.1: single-line dictation in C major, treble clef, 4/4, 1 to 4 bars, 40 to 160 BPM.
 - Generated lessons focus on a small diatonic range. The editor supports a wider range and accidentals.
 - Exact timing uses 12 integer ticks per quarter note. Dotted eighths and longer dotted values work; dotted sixteenths, tuplets and irregular meters are not implemented.
 - Barline grouping feedback is limited. It does not assess every engraving convention or enharmonic spelling.
@@ -195,3 +205,5 @@ The test suite covers 700 generated phrases, rhythm/pitch separation, ties, unkn
 GPL-3.0, see [LICENSE](LICENSE). The UI and teaching progression were developed from the separately preserved [Music Theory Master](https://github.com/Eipckz/music-theory-master) reference. Its original application and progress database are untouched. See the [desktop guide](docs/DESKTOP.md) for the reference revision and original build notes.
 
 Bravura is distributed under the SIL Open Font License, bundled in [web/fonts/OFL.txt](web/fonts/OFL.txt). Music glyphs are local, so notation renders without a font CDN. GitHub tokens are never bundled in the public repository, release, site or backups.
+
+Piano sample license: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), Alexander Holm. [Source recordings](https://github.com/Tonejs/audio/tree/master/salamander), [bundled attribution and conversion notes](web/piano/LICENSE.txt). A selected nine-sample bank is converted to mono PCM for a small, offline-capable release. Other pitches are derived by resampling. It is a single-velocity teaching instrument, not a full concert-piano simulation. After a web update, close all open app tabs and reopen to activate its newly cached version.

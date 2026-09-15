@@ -1,8 +1,10 @@
-# Theory Dictation Master v0.2.0: Web edition
+# Theory Dictation Master v0.2.1: Web edition
 
 **[Open the app on any device](https://eipckz.github.io/theory-dictation-master/)**
 
 The primary release is now a responsive GitHub Pages app. No EXE is needed. Enter and edit notes silently, just like paper; sound only starts from explicit playback controls.
+
+New in v0.2.1: recorded grand-piano playback by default, optional mixed piano/flute/clarinet practice, and starting tonic pitch, C-major chord, first-note or no-reference conditions. Entry remains completely silent. Instrument and reference conditions persist with the exercise and are separated in progress comparisons.
 
 Includes nine lessons, variable rhythmic phrases, separate rhythm/pitch grading, incomplete notation sketches, hearing drafts, paper mode, print sheets, WAV export, local saving, offline caching, JSON backups, progress reset, and optional private GitHub cross-device sync.
 

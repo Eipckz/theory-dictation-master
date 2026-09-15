@@ -1,0 +1,4 @@
+Salamander Grand Piano by Alexander Holm, Yamaha C5 recordings.
+CC BY 3.0: https://creativecommons.org/licenses/by/3.0/
+Source: https://github.com/Tonejs/audio/tree/master/salamander
+Changes: selected C/F-sharp samples, converted to 22050 Hz mono signed 16-bit PCM, maximum 8 seconds with a final 0.2-second fade. Pitch-shifted by the app for intermediate notes.
