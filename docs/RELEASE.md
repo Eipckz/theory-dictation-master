@@ -1,15 +1,28 @@
-# Theory Dictation Master v0.2.1: Web edition
+# Theory Dictation Master v1.0.0
 
-**[Open the app on any device](https://eipckz.github.io/theory-dictation-master/)**
+**[Open the app](https://eipckz.github.io/theory-dictation-master/)**
 
-The primary release is now a responsive GitHub Pages app. No EXE is needed. Enter and edit notes silently, just like paper; sound only starts from explicit playback controls.
+The stable single-line dictation release expands v0.2.1 with:
 
-New in v0.2.1: recorded grand-piano playback by default, optional mixed piano/flute/clarinet practice, and starting tonic pitch, C-major chord, first-note or no-reference conditions. Entry remains completely silent. Instrument and reference conditions persist with the exercise and are separated in progress comparisons.
+- C, G and F major plus A natural minor.
+- 2/4, 3/4, 4/4 and 6/8, with correct beat units and count-ins.
+- Thirteen lessons, including transposition, minor and compound meter.
+- Delayed unfamiliar review and transparent evidence labels.
+- Matched first-four versus latest-four progress comparisons.
+- Saved-attempt inspection with per-hearing draft feedback.
+- Practice presets, playback volume and previous-save recovery.
+- Protection against stale tabs overwriting work, plus update activation controls.
 
-Includes nine lessons, variable rhythmic phrases, separate rhythm/pitch grading, incomplete notation sketches, hearing drafts, paper mode, print sheets, WAV export, local saving, offline caching, JSON backups, progress reset, and optional private GitHub cross-device sync.
+Silent notation entry, recorded grand piano, mixed instruments, starting pitch/chord references, paper mode, offline caching, backups and private GitHub sync remain included. Existing v0.2.1 web progress is preserved.
 
-For sync, use Settings and a fine-grained token limited to the private progress repository with Contents read/write permission. Tokens remain in page memory. Tap Sync now before switching devices and on the receiving device. The README contains the complete setup and screenshots.
+## Upgrade
 
-The ZIP contains the static website for self-hosting over HTTP/HTTPS. The SHA-256 file verifies its download. The older v0.1.0 Windows EXE is retained as a historical release.
+Close all v0.2.1 app tabs and reopen the link to activate the newly cached release. From v1.0 onward, use the update banner when available. Export a progress backup before changing devices; sync is manual through Settings.
 
-Scope: C major, treble clef, 4/4 and single-line dictation. Harmony, chord entry, vocal assessment and two-part modules remain planned. Automated tests and visual checks are documented in the README; physical speaker quality and every device are not certified.
+## Downloads and guide
+
+The ZIP contains the standalone static website, served over HTTP/HTTPS. Its SHA-256 checksum verifies the download. GitHub Pages is the primary release; no EXE is required. The historical v0.1.0 Windows release remains available.
+
+The [README](https://github.com/Eipckz/theory-dictation-master#readme) includes setup, screenshots, controls, assessment, review rules, backup/recovery, sync and known limits. See [validation](https://github.com/Eipckz/theory-dictation-master/blob/main/docs/VALIDATION-1.0.md).
+
+Scope remains single-line treble-clef dictation. Harmony/chord entry, two-part dictation, microphone assessment and arbitrary key signatures are future modules. Retention labels describe the tested conditions, not universal mastery.

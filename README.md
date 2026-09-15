@@ -15,6 +15,12 @@ Practice melodic dictation on a computer, tablet, or phone. Nothing to install. 
 
 </div>
 
+## New in 1.0.0
+
+This stable release completes the single-line dictation workflow. It adds musical variety, delayed review, inspectable hearing drafts, comparable progress summaries and safer saved-work recovery. Existing web progress is preserved. See the [release notes](docs/RELEASE.md) and [validation record](docs/VALIDATION-1.0.md).
+
+![Compound-meter lesson in version 1.0](docs/media/web-v1-lesson.png)
+
 ## Start here
 
 1. Open the app link above in a modern browser with JavaScript and Web Audio.
@@ -41,7 +47,7 @@ Following pitches can distract you from rhythm. The progression carries simple r
 | Dots and rests | Distinguish sustain, silence and the next attack |
 | Sixteenth cells | Keep beat grouping while hearing shorter patterns |
 
-Nine short lessons include orientation, pulse, the pitch/rhythm bridge, subdivisions, dots/rests, ties and paper transfer. Lesson examples are explicitly guided and cannot earn independent mastery. The orientation unlocks after adding a note and using Undo. Later Next lesson buttons require two unfamiliar passing checks; the lesson selector lets you revisit material freely.
+Thirteen short lessons include orientation, pulse, the pitch/rhythm bridge, subdivisions, dots/rests, ties, paper transfer, transposition, natural minor and compound meter. Lesson examples are explicitly guided and cannot earn independent mastery. The orientation unlocks after adding a note and using Undo. Later Next lesson buttons require two unfamiliar passing checks; the lesson selector lets you revisit material freely.
 
 **Three days is a practice structure, not a mastery promise.** Day one establishes pulse and a small pitched vocabulary. Day two integrates them and fades support. Day three tries unfamiliar paper and no-click conditions. Continue at your own pace afterward. Session timers suggest a break after submission; elapsed time never awards progress.
 
@@ -49,7 +55,7 @@ Nine short lessons include orientation, pulse, the pitch/rhythm bridge, subdivis
 
 ## Silent notation editor
 
-![Browser notation entry](docs/media/web-practice.png)
+![Browser notation entry](docs/media/web-v1-practice.png)
 
 - Choose whole, half, quarter, eighth, sixteenth, or unknown duration.
 - Set dot, rest, unknown pitch, natural, sharp or flat before adding a note.
@@ -88,9 +94,17 @@ There is no animated beat cursor. The optional beat grid is static and disabled 
 
 Open **Set up the next phrase**. Choose **Grand piano** for normal practice, **Mixed instruments** to rotate piano/flute/clarinet without immediately repeating the previous instrument, or a fixed flute/clarinet. Click Next phrase to apply. An instrument stays fixed for the entire phrase, its replays and grading. Changing the selector or entering notes never plays sound.
 
-Choose a **Starting reference**: tonic pitch C, C-major chord (C/E/G together), the first melody note, or none. Each hearing plays the reference for 1.2 seconds, leaves 0.6 seconds of silence, then gives the selected count-in and phrase. The reference does not occupy a beat in your answer. It is included in WAV exports. A separate tonic button is an extra aid and marks the attempt assisted.
+Choose a **Starting reference**: the selected key’s tonic pitch or tonic chord (for example C/E/G in C major or A/C/E in A minor), the first melody note, or none. Each hearing plays the reference for 1.2 seconds, leaves 0.6 seconds of silence, then gives the selected count-in and phrase. The reference does not occupy a beat in your answer. It is included in WAV exports. A separate tonic button is an extra aid and marks the attempt assisted.
 
 Begin with piano, a starting pitch or chord, and short phrases. Increase melody difficulty when comparable accuracy supports it. Later change timbre or remove the reference while keeping the other conditions stable. Reference and instrument are stored with every exercise and are part of comparison groups, so a supported piano result does not masquerade as unsupported mixed-instrument evidence. Lessons use piano plus a tonic reference.
+
+## Keys, meter and your preferred setup
+
+In **Set up the next phrase**, choose C, G or F major, or A natural minor. Choose 2/4, 3/4, 4/4 or 6/8, then **Next phrase**. The editor writes accidentals explicitly rather than engraving a key signature. **Follow key** automatically supplies F sharp in G major and B flat in F major. Choose Natural, Sharp or Flat to override that spelling.
+
+In simple meters the BPM number refers to a quarter note. In 6/8 it refers to a dotted quarter: two main beats and six eighth-note subdivisions per bar. The count-in matches the meter. The starting reference is outside the measured phrase. Notes fill a bar by duration, regardless of how quickly you enter them.
+
+**Settings > Save current practice settings** saves the next-phrase controls. Load the preset to start a new phrase with those settings. Playback volume is saved per profile. WAV exports retain full audio level; the volume control affects live playback.
 
 ## Assessment and feedback
 
@@ -104,9 +118,24 @@ Begin with piano, a starting pitch or chord, and short phrases. Increase melody 
 
 Valid ties merge into one sustained sound for listening comparison. Feedback identifies missing/extra attacks and rhythm-versus-pitch difficulties. Repeated pitches can produce ambiguous alignments; the app says so rather than inventing a precise diagnosis.
 
-Independent evidence excludes guided examples, aids, interrupted/invalid audio, paper self-checks, and imported-file evidence. Repeated melodies count once per comparison group. Automatic advancement requires two blocks of eight comparable unfamiliar items, with seven passes in each and at least 90% on every assessed listening component. Comparability includes target, BPM, bars, mode, support, hearing allowance, and rhythm-only status. Mixed-condition history is descriptive, not proof of improvement.
+Independent evidence excludes guided examples, aids, interrupted/invalid audio, paper self-checks, and imported-file evidence. Repeated melodies count once per comparison group. Automatic advancement requires two blocks of eight comparable unfamiliar items, with seven passes in each and at least 90% on every assessed listening component. Comparability includes difficulty, key, meter, BPM, bars, mode, support, instrument, reference, hearing allowance, and rhythm-only status. Mixed-condition history is descriptive, not proof of improvement.
 
 Exploratory **Easier / Stay here / Challenge** choices are available without awarding confirmed levels. A rhythm-focused follow-up can retain a difficult rhythm while changing pitches; this is labeled assisted. The web release does not implement a calibrated spaced-repetition model or infer mastery from time spent.
+
+## Delayed review and evidence you can inspect
+
+**Today > Start review** generates an unfamiliar phrase under the earliest scheduled review group's conditions. Early practice is allowed. Review labels require at least 90% integrated accuracy on unfamiliar, independent items:
+
+- First passing item: **Emerging**, with a review after 20 minutes.
+- A passing item after that delay: **Reliable today**, with another review after 24 hours.
+- A passing item after the next delay: **Retained in these conditions**, with another review after three days.
+- A failure returns that group to **Needs review**. Other conditions keep their own evidence.
+
+These are transparent scheduling rules, not a calibrated memory model or a guarantee of mastery. Repeated targets, assisted work and immediate successes cannot satisfy delayed-review requirements. Device clocks determine the intervals.
+
+**Progress** separates settings into comparison groups. After eight distinct independent items, it compares the first four with the latest four without overlapping samples. Changing key, meter, support or instrument creates a different group.
+
+Use **Inspect** beside a saved attempt to see your final notation and target, confidence, aids, and retrospective scores for each saved hearing draft. An incomplete first-hearing draft remains incomplete. Inspecting history during an active heard phrase marks that phrase assisted.
 
 ## Paper and classroom practice
 
@@ -144,23 +173,27 @@ The token is kept only in page memory. Closing/reloading the page or pressing Di
 
 **Settings > Reset progress** clears this browser's attempts, lesson checks and draft after a confirmation. Then **Sync now** to reset the cloud copy too. Other devices receive the reset on their next sync; an old offline copy cannot restore pre-reset progress. A reset does not erase historical Git commits. Browser credentials are not part of progress.
 
-![Settings and sync](docs/media/web-settings.png)
+![Settings and sync](docs/media/web-v1-settings.png)
 
 ## Backups, installation and offline use
 
 **Export progress backup** saves a JSON file. **Import a web backup** validates it, merges its attempts, and resumes its active draft. File-imported attempts stay visible but cannot silently manufacture new mastery. A pre-import recovery copy is available in Settings. Files from the old desktop SQLite app are not compatible with web JSON backups.
 
+**Restore previous local save** recovers the state before the latest changed local save and keeps a recovery copy of the current state. An unreadable current record triggers a recovery attempt from that previous save. Recovery is a single-step safety net, not unlimited undo. Export backups regularly. The app supports up to 2,000 attempt records; archive a backup before resetting when full.
+
+When another tab saves newer work, the older tab locks its editor and asks you to reload. This prevents the stale tab from overwriting your draft. Use one editing tab per browser.
+
 After an online visit finishes caching, the service worker can reload the app offline. Open your browser menu and choose **Install** or **Add to Home Screen** when supported. The site does not need a Windows executable. Browser storage is specific to the browser and device; private browsing, storage eviction and clearing site data can remove it. Sync requires an internet connection. If the browser blocks sound, enable device/browser sound and tap an explicit playback button again.
 
 <details><summary>Phone view</summary>
 
-![Mobile practice](docs/media/web-mobile.png)
+![Mobile practice](docs/media/web-v1-mobile.png)
 
 </details>
 
 ## Current scope and limits
 
-- Web v0.2.1: single-line dictation in C major, treble clef, 4/4, 1 to 4 bars, 40 to 160 BPM.
+- Web v1.0.0: single-line treble-clef dictation in C, G and F major or A natural minor; 2/4, 3/4, 4/4 or 6/8; 1 to 4 bars; 40 to 160 BPM.
 - Generated lessons focus on a small diatonic range. The editor supports a wider range and accidentals.
 - Exact timing uses 12 integer ticks per quarter note. Dotted eighths and longer dotted values work; dotted sixteenths, tuplets and irregular meters are not implemented.
 - Barline grouping feedback is limited. It does not assess every engraving convention or enharmonic spelling.
@@ -190,6 +223,7 @@ Open http://127.0.0.1:4173. No framework build is needed: `web/` is the deployab
 | `web/staff.js` | SVG notation using Bravura glyphs |
 | `web/audio.js` | PCM synthesis, WAV export, explicit Web Audio playback |
 | `web/store.js` | Local backup validation and import |
+| `web/review.js` | Delayed review and matched progress comparisons |
 | `web/sync.js` | Private GitHub storage, merge and reset handling |
 | `web/app.js` | Interface, lessons, drafts, silent editing and settings |
 | `web/sw.js` | Offline shell caching |
@@ -198,7 +232,7 @@ Open http://127.0.0.1:4173. No framework build is needed: `web/` is the deployab
 
 Pushes to `main` run tests, package `web/`, and deploy GitHub Pages through Actions. Tags publish a web ZIP plus SHA-256 checksum. Changes can be made from any device using the GitHub web editor or Codespaces; no copy must remain on the original computer. Keep `sw.js` cache version current when changing offline assets.
 
-The test suite covers 700 generated phrases, rhythm/pitch separation, ties, unknowns, malformed backups, repeated-evidence exclusion, sync conflicts/reset generations, interrupted audio unlock, and real browser workflows. Windows local tests use Chromium and a mobile viewport. GitHub Pages deployment additionally runs WebKit on Linux because the bundled Windows WebKit does not provide Web Audio. Mobile emulation is not physical-device certification. Offline reload is verified in Chromium; the Playwright WebKit offline emulator fails navigation internally, so Safari offline behavior remains unverified. Live private-repository sync was checked for a cross-device round trip and reset protection; UI network failure and credential handling are also tested with controlled API responses.
+The test suite covers 6,300 generated phrases, rhythm/pitch separation, ties, unknowns, malformed backups, repeated-evidence exclusion, sync conflicts/reset generations, interrupted audio unlock, and real browser workflows. Windows local tests use Chromium and a mobile viewport. GitHub Pages deployment additionally runs WebKit on Linux because the bundled Windows WebKit does not provide Web Audio. Mobile emulation is not physical-device certification. Offline reload is verified in Chromium; the Playwright WebKit offline emulator fails navigation internally, so Safari offline behavior remains unverified. Live private-repository sync was checked for a cross-device round trip and reset protection; UI network failure and credential handling are also tested with controlled API responses.
 
 ## Licensing and reference
 
@@ -206,4 +240,4 @@ GPL-3.0, see [LICENSE](LICENSE). The UI and teaching progression were developed 
 
 Bravura is distributed under the SIL Open Font License, bundled in [web/fonts/OFL.txt](web/fonts/OFL.txt). Music glyphs are local, so notation renders without a font CDN. GitHub tokens are never bundled in the public repository, release, site or backups.
 
-Piano sample license: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), Alexander Holm. [Source recordings](https://github.com/Tonejs/audio/tree/master/salamander), [bundled attribution and conversion notes](web/piano/LICENSE.txt). A selected nine-sample bank is converted to mono PCM for a small, offline-capable release. Other pitches are derived by resampling. It is a single-velocity teaching instrument, not a full concert-piano simulation. After a web update, close all open app tabs and reopen to activate its newly cached version.
+Piano sample license: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), Alexander Holm. [Source recordings](https://github.com/Tonejs/audio/tree/master/salamander), [bundled attribution and conversion notes](web/piano/LICENSE.txt). A selected nine-sample bank is converted to mono PCM for a small, offline-capable release. Other pitches are derived by resampling. It is a single-velocity teaching instrument, not a full concert-piano simulation. From v1.0 onward, an update banner lets you save and activate a downloaded update. When upgrading from v0.2.1, close all app tabs and reopen once to activate the new cache.

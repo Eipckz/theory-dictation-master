@@ -8,7 +8,7 @@ export function mergeProgress(local,remote){
  const ar=a.resetAt||0,br=b.resetAt||0;if(ar!==br)return ar>br?a:b;
  const newer=(a.updatedAt||0)>=(b.updatedAt||0)?a:b;
  const rows=new Map(b.attempts.map(x=>[x.id,x]));for(const x of a.attempts)rows.set(x.id,x);
- const passes={};for(let i=0;i<9;i++)passes[i]=[...new Set([...(a.lessonPasses[i]||[]),...(b.lessonPasses[i]||[])])];
+ const passes={};for(let i=0;i<13;i++)passes[i]=[...new Set([...(a.lessonPasses[i]||[]),...(b.lessonPasses[i]||[])])];
  return {...newer,attempts:[...rows.values()].sort((x,y)=>x.created-y.created),lessonPasses:passes,earnedLevel:Math.max(a.earnedLevel,b.earnedLevel),tutorialDone:a.tutorialDone||b.tutorialDone};
 }
 export async function syncProgress(local,{repo,token},request=fetch){
