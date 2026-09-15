@@ -15,11 +15,17 @@ Practice melodic dictation on a computer, tablet, or phone. Nothing to install. 
 
 </div>
 
-## New in 1.0.0
+## New in 1.1.0: keys, modes and meter
 
-This stable release completes the single-line dictation workflow. It adds musical variety, delayed review, inspectable hearing drafts, comparable progress summaries and safer saved-work recovery. Existing web progress is preserved. See the [release notes](docs/RELEASE.md) and [validation record](docs/VALIDATION-1.0.md).
+- **189 spelled keys and modes:** seven note letters, each natural/flat/sharp, across nine collections. Includes all conventional major and minor keys, enharmonic alternatives and theoretical keys using double accidentals.
+- **160 meters:** every numerator from 1 through 32 with denominators 1, 2, 4, 8 and 16.
+- **Custom grouping:** enter `2+2+3` or `3+2+2` in 7/8, or any positive groups adding to the numerator.
+- **18 lessons**, with new explanations of enharmonic spelling, minor forms, modes, unequal groups and tempo units.
+- Upper difficulty expands to six scale degrees and then an octave. Piano, mixed instruments and silent entry remain available throughout.
 
-![Compound-meter lesson in version 1.0](docs/media/web-v1-lesson.png)
+Version 1.0 added delayed review, hearing-draft inspection and recovery. These remain included, and existing progress is preserved. [Release notes](docs/RELEASE.md) describe this update.
+
+![Unequal-meter practice](docs/media/web-v11-practice.png)
 
 ## Start here
 
@@ -47,7 +53,7 @@ Following pitches can distract you from rhythm. The progression carries simple r
 | Dots and rests | Distinguish sustain, silence and the next attack |
 | Sixteenth cells | Keep beat grouping while hearing shorter patterns |
 
-Thirteen short lessons include orientation, pulse, the pitch/rhythm bridge, subdivisions, dots/rests, ties, paper transfer, transposition, natural minor and compound meter. Lesson examples are explicitly guided and cannot earn independent mastery. The orientation unlocks after adding a note and using Undo. Later Next lesson buttons require two unfamiliar passing checks; the lesson selector lets you revisit material freely.
+Eighteen short lessons include orientation, pulse, the pitch/rhythm bridge, subdivisions, dots/rests, ties, paper transfer, transposition, minor forms, modes, compound meter and unequal groups. Lesson examples are explicitly guided and cannot earn independent mastery. The orientation unlocks after adding a note and using Undo. Later Next lesson buttons require two unfamiliar passing checks; the lesson selector lets you revisit material freely.
 
 **Three days is a practice structure, not a mastery promise.** Day one establishes pulse and a small pitched vocabulary. Day two integrates them and fades support. Day three tries unfamiliar paper and no-click conditions. Continue at your own pace afterward. Session timers suggest a break after submission; elapsed time never awards progress.
 
@@ -100,9 +106,48 @@ Begin with piano, a starting pitch or chord, and short phrases. Increase melody 
 
 ## Keys, meter and your preferred setup
 
-In **Set up the next phrase**, choose C, G or F major, or A natural minor. Choose 2/4, 3/4, 4/4 or 6/8, then **Next phrase**. The editor writes accidentals explicitly rather than engraving a key signature. **Follow key** automatically supplies F sharp in G major and B flat in F major. Choose Natural, Sharp or Flat to override that spelling.
+In **Set up the next phrase**, choose a key/mode, meter and optional beat grouping, then **Next phrase**. Groups must add up to the numerator. Invalid settings leave the current draft intact.
 
-In simple meters the BPM number refers to a quarter note. In 6/8 it refers to a dotted quarter: two main beats and six eighth-note subdivisions per bar. The count-in matches the meter. The starting reference is outside the measured phrase. Notes fill a bar by duration, regardless of how quickly you enter them.
+### Available pitch collections
+
+| Collection | Intervals above tonic in semitones |
+| --- | --- |
+| Major / Ionian | 0, 2, 4, 5, 7, 9, 11 |
+| Minor / natural minor / Aeolian | 0, 2, 3, 5, 7, 8, 10 |
+| Harmonic minor | 0, 2, 3, 5, 7, 8, 11 |
+| Melodic minor | 0, 2, 3, 5, 7, 9, 11 |
+| Dorian | 0, 2, 3, 5, 7, 9, 10 |
+| Phrygian | 0, 1, 3, 5, 7, 8, 10 |
+| Lydian | 0, 2, 4, 6, 7, 9, 11 |
+| Mixolydian | 0, 2, 4, 5, 7, 9, 10 |
+| Locrian | 0, 1, 3, 5, 6, 8, 10 |
+
+Melodic minor uses the raised sixth and seventh in **both directions**. For classical descending melodic-minor practice, use the natural-minor collection. Mode names use their own tonic, so D Dorian and C major share pitches but have different reference chords.
+
+Every collection is available on all 21 written tonics: C through B, with a natural, flat or sharp. These are 189 **spellings and collections**, not 189 distinct pitch classes. Familiar keys and theoretical spellings are both included. The tonic reference chord uses scale degrees 1, 3 and 5, including a diminished chord in Locrian.
+
+The editor prints accidentals explicitly instead of engraving key signatures. **Follow key** supplies the selected collection's spelling. G-sharp harmonic minor uses F double-sharp; C-flat minor uses E double-flat. Pitch buttons show the active spelling. Natural, Sharp, Flat and Double sharp/flat let you override it silently.
+
+### Meter and tempo rules
+
+The denominator names the written unit. 1 means whole note, 2 half, 4 quarter, 8 eighth, and 16 sixteenth. The interface always states what the BPM number means.
+
+| Setting | Automatic groups | BPM unit |
+| --- | --- | --- |
+| 2/2 | 1+1 | Half note |
+| 3/4 | 1+1+1 | Quarter note |
+| 6/8 | 3+3 | Dotted quarter |
+| 9/8 | 3+3+3 | Dotted quarter |
+| 12/16 | 3+3+3+3 | Dotted eighth |
+| 5/8 | 2+3 | Eighth note |
+| 7/8 | 2+2+3 | Eighth note |
+| 7/8 with 3+2+2 | 3+2+2 | Eighth note |
+
+Automatic grouping uses groups of three for numerators of at least six divisible by three. Other eighth/sixteenth meters of five or more use groups of two ending in two or three. Remaining meters use individual denominator notes. These are defaults, not claims that a meter has only one interpretation. Override them as needed.
+
+Equal groups use their full length as the BPM unit. Unequal groups use the denominator note. Thus 7/8 at eighth = 120 lasts 3.5 seconds per bar; the 2+2+3 pulse gaps are 1, 1 and 1.5 seconds. Count-in, support clicks, notation grid, beaming and comparison groups use the same grouping. Subdivision clicks never go below a sixteenth note. The count-in covers one complete bar.
+
+Thirty-two is the numerator limit, and sixteenths are the smallest written unit. Unbounded numerators, 32nd/64th-note denominators, irrational meters, tuplets and changing time signatures within one exercise are not implemented. Long or unusual meters are available deliberately; start with short familiar bars and change one condition at a time.
 
 **Settings > Save current practice settings** saves the next-phrase controls. Load the preset to start a new phrase with those settings. Playback volume is saved per profile. WAV exports retain full audio level; the volume control affects live playback.
 
@@ -133,7 +178,7 @@ Exploratory **Easier / Stay here / Challenge** choices are available without awa
 
 These are transparent scheduling rules, not a calibrated memory model or a guarantee of mastery. Repeated targets, assisted work and immediate successes cannot satisfy delayed-review requirements. Device clocks determine the intervals.
 
-**Progress** separates settings into comparison groups. After eight distinct independent items, it compares the first four with the latest four without overlapping samples. Changing key, meter, support or instrument creates a different group.
+**Progress** separates settings into comparison groups. After eight distinct independent items, it compares the first four with the latest four without overlapping samples. Changing key, meter, beat grouping, pitch range, support or instrument creates a different group. Earlier five-note difficulty results remain separate from the new expanded-range exercises.
 
 Use **Inspect** beside a saved attempt to see your final notation and target, confidence, aids, and retrospective scores for each saved hearing draft. An incomplete first-hearing draft remains incomplete. Inspecting history during an active heard phrase marks that phrase assisted.
 
@@ -187,15 +232,15 @@ After an online visit finishes caching, the service worker can reload the app of
 
 <details><summary>Phone view</summary>
 
-![Mobile practice](docs/media/web-v1-mobile.png)
+![Mobile practice](docs/media/web-v11-mobile.png)
 
 </details>
 
 ## Current scope and limits
 
-- Web v1.0.0: single-line treble-clef dictation in C, G and F major or A natural minor; 2/4, 3/4, 4/4 or 6/8; 1 to 4 bars; 40 to 160 BPM.
+- Web v1.1.0: single-line treble-clef dictation in 189 spelled keys/modes and 160 meters; custom grouping; 1 to 4 bars; 40 to 160 BPM using the displayed beat unit.
 - Generated lessons focus on a small diatonic range. The editor supports a wider range and accidentals.
-- Exact timing uses 12 integer ticks per quarter note. Dotted eighths and longer dotted values work; dotted sixteenths, tuplets and irregular meters are not implemented.
+- Exact timing uses 12 integer ticks per quarter note. Dotted eighths and longer dotted values work; dotted sixteenths, tuplets and irrational meters are not implemented.
 - Barline grouping feedback is limited. It does not assess every engraving convention or enharmonic spelling.
 - Harmony/chord entry, two-part dictation, sing-back, microphone analysis, MusicXML import and full course customization remain planned. This release does not pretend to contain them.
 - Actual loudspeaker quality and physical iPhone/iPad hardware still depend on your device. Automated browser checks verify scheduling and audio startup, not your speaker volume or how it sounds to your ear.
@@ -232,7 +277,7 @@ Open http://127.0.0.1:4173. No framework build is needed: `web/` is the deployab
 
 Pushes to `main` run tests, package `web/`, and deploy GitHub Pages through Actions. Tags publish a web ZIP plus SHA-256 checksum. Changes can be made from any device using the GitHub web editor or Codespaces; no copy must remain on the original computer. Keep `sw.js` cache version current when changing offline assets.
 
-The test suite covers 6,300 generated phrases, rhythm/pitch separation, ties, unknowns, malformed backups, repeated-evidence exclusion, sync conflicts/reset generations, interrupted audio unlock, and real browser workflows. Windows local tests use Chromium and a mobile viewport. GitHub Pages deployment additionally runs WebKit on Linux because the bundled Windows WebKit does not provide Web Audio. Mobile emulation is not physical-device certification. Offline reload is verified in Chromium; the Playwright WebKit offline emulator fails navigation internally, so Safari offline behavior remains unverified. Live private-repository sync was checked for a cross-device round trip and reset protection; UI network failure and credential handling are also tested with controlled API responses.
+The test suite additionally checks all 30,240 key/meter combinations and every meter at each difficulty across four bars. The earlier regression suite covers 6,300 generated phrases, rhythm/pitch separation, ties, unknowns, malformed backups, repeated-evidence exclusion, sync conflicts/reset generations, interrupted audio unlock, and real browser workflows. Windows local tests use Chromium and a mobile viewport. GitHub Pages deployment additionally runs WebKit on Linux because the bundled Windows WebKit does not provide Web Audio. Mobile emulation is not physical-device certification. Offline reload is verified in Chromium; the Playwright WebKit offline emulator fails navigation internally, so Safari offline behavior remains unverified. Live private-repository sync was checked for a cross-device round trip and reset protection; UI network failure and credential handling are also tested with controlled API responses.
 
 ## Licensing and reference
 

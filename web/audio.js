@@ -1,4 +1,4 @@
-import {sounding,midi,Q,beatTicks,beatCount,keyInfo,tonicMidi} from './domain.js';
+import {sounding,midi,Q,beatTicks,beatCount,keyInfo,tonicMidi,meterInfo} from './domain.js';
 export const INSTRUMENTS=['piano','flute','clarinet'];
 export function chooseInstrument(mode,previous,random=Math.random){const choices=INSTRUMENTS.filter(x=>x!==previous);return mode==='mixed'?choices[Math.floor(random()*choices.length)]:INSTRUMENTS.includes(mode)?mode:'piano';}
 const ROOTS=[48,54,60,66,72,78,84,90,96];let pianoPromise;
@@ -7,12 +7,17 @@ export function loadPiano(){return pianoPromise??=(Promise.all(ROOTS.map(async r
  const view=new DataView(await response.arrayBuffer()),data=new Float32Array(view.byteLength/2);let peak=0;for(let i=0;i<data.length;i++){data[i]=view.getInt16(i*2,true)/32768;peak=Math.max(peak,Math.abs(data[i]));}if(!peak)throw Error('Empty piano sample.');for(let i=0;i<data.length;i++)data[i]*=.7/peak;
  return [root,data];
 })).then(rows=>Object.fromEntries(rows)).catch(error=>{pianoPromise=null;throw error;}));}
+const beatIndexForDropout=(m,b,t)=>b*m.groups.length+m.pulses.findLastIndex(x=>x<=t);
 export function schedule(score,support='countin'){
  const beat=60/score.bpm,reference=score.reference||'none',referenceNotes=reference==='chord'?keyInfo(score).chord:reference==='pitch'?[tonicMidi(score)]:reference==='first'?[midi(score.events.find(e=>!e.rest&&e.step!==null)||{rest:true})??tonicMidi(score)]:[],referenceLength=referenceNotes.length?1.8:0;
- const count=beatCount(score),unit=beatTicks(score),lead=referenceLength+(support==='none'?0:count*beat),notes=sounding(score.events).filter(e=>!e.rest&&midi(e)!==null&&e.duration>0).map(e=>({time:lead+e.onset/unit*beat,duration:e.duration/unit*beat,midi:midi(e)})),clicks=[];
- if(support!=='none')for(let i=0;i<count;i++)clicks.push({time:referenceLength+i*beat,accent:i===0});
- const divisions=support==='subdivision'?(score.meter==='6/8'?3:2):1;if(['subdivision','beat','dropout'].includes(support))for(let k=0;k<score.bars*count*divisions;k++){const t=k/divisions;if(support!=='dropout'||t<2)clicks.push({time:lead+t*beat,accent:k%(count*divisions)===0});}
- return {notes,referenceNotes:referenceNotes.map(midi=>({midi,time:0,duration:1.2,gain:referenceNotes.length===3?.5:.8})),clicks,length:lead+score.bars*count*beat+.15};
+ const m=meterInfo(score),unit=m.unit,barTime=m.span/unit*beat,lead=referenceLength+(support==='none'?0:barTime),notes=sounding(score.events).filter(e=>!e.rest&&midi(e)!==null&&e.duration>0).map(e=>({time:lead+e.onset/unit*beat,duration:e.duration/unit*beat,midi:midi(e)})),clicks=[];
+ if(support!=='none')for(const t of m.pulses)clicks.push({time:referenceLength+t/unit*beat,accent:t===0});
+ const subdivision=Math.max(3,m.groups.every(g=>g===1)?m.base/2:m.base);
+ if(['subdivision','beat','dropout'].includes(support))for(let b=0;b<score.bars;b++){
+ const positions=support==='subdivision'?Array.from({length:Math.ceil(m.span/subdivision)},(_,i)=>i*subdivision):m.pulses;
+ for(const t of positions){const tick=b*m.span+t;if(support==='dropout'&&beatIndexForDropout(m,b,t)>=2)continue;clicks.push({time:lead+tick/unit*beat,accent:t===0});}
+ }
+ return {notes,referenceNotes:referenceNotes.map(midi=>({midi,time:0,duration:1.2,gain:referenceNotes.length===3?.5:.8})),clicks,length:lead+score.bars*barTime+.15};
 }
 export function render(score,support='countin',rate=44100,piano=null){
  const plan=schedule(score,support),out=new Float32Array(Math.ceil(plan.length*rate)),instrument=score.instrument||'piano';
