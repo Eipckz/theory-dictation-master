@@ -10,3 +10,7 @@ error.log
 *.exe
 *.mp4
 *.wav
+
+node_modules/
+playwright-report/
+test-results/

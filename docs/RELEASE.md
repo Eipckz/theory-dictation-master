@@ -1,9 +1,13 @@
-# Theory Dictation Master v0.1.0
+# Theory Dictation Master v0.2.0: Web edition
 
-First usable offline single-line dictation core. Separate from Music Theory Master and its progress database.
+**[Open the app on any device](https://eipckz.github.io/theory-dictation-master/)**
 
-Download **TheoryDictationMaster.exe** for Windows x64. Python is bundled. Read the repository README for the first-run tutorial, keyboard controls, paper workflow, backups and limitations.
+The primary release is now a responsive GitHub Pages app. No EXE is needed. Enter and edit notes silently, just like paper; sound only starts from explicit playback controls.
 
-Includes rhythm-aware clickable staff entry, sounded lessons, variable-duration phrases, separate pitch/rhythm grading, hearing drafts, guided follow-ups, no-click assessment and paper exports. The README includes real screenshots, an animated demonstration and a downloadable walkthrough video.
+Includes nine lessons, variable rhythmic phrases, separate rhythm/pitch grading, incomplete notation sketches, hearing drafts, paper mode, print sheets, WAV export, local saving, offline caching, JSON backups, progress reset, and optional private GitHub cross-device sync.
 
-This is an early core release. Advanced dictation modules, full course customization, deeper delayed-review adaptation and calibrated learning outcomes remain planned. Demo scores are generated examples, not personal learning evidence. Physical audio quality has not been independently listened to by the builder.
+For sync, use Settings and a fine-grained token limited to the private progress repository with Contents read/write permission. Tokens remain in page memory. Tap Sync now before switching devices and on the receiving device. The README contains the complete setup and screenshots.
+
+The ZIP contains the static website for self-hosting over HTTP/HTTPS. The SHA-256 file verifies its download. The older v0.1.0 Windows EXE is retained as a historical release.
+
+Scope: C major, treble clef, 4/4 and single-line dictation. Harmony, chord entry, vocal assessment and two-part modules remain planned. Automated tests and visual checks are documented in the README; physical speaker quality and every device are not certified.

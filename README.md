@@ -2,305 +2,196 @@
 
 # Theory Dictation Master
 
-### Hear the phrase. Keep its rhythm. Put both on the staff.
+### Hear the phrase. Keep its pulse. Write it silently.
 
-[![Tests](https://github.com/Eipckz/theory-dictation-master/actions/workflows/ci.yml/badge.svg)](https://github.com/Eipckz/theory-dictation-master/actions/workflows/ci.yml)
+[![Pages](https://github.com/Eipckz/theory-dictation-master/actions/workflows/pages.yml/badge.svg)](https://github.com/Eipckz/theory-dictation-master/actions/workflows/pages.yml)
 [![Release](https://img.shields.io/github/v/release/Eipckz/theory-dictation-master)](https://github.com/Eipckz/theory-dictation-master/releases/latest)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-An offline Windows application for learning to transcribe **rhythm inside pitched melodies**, with clickable notation and separate pitch and rhythm feedback.
+**[OPEN THE APP](https://eipckz.github.io/theory-dictation-master/)** · **[Latest web release](https://github.com/Eipckz/theory-dictation-master/releases/latest)** · **[Sync setup](#sync-between-devices)**
 
-**[Download the Windows EXE](https://github.com/Eipckz/theory-dictation-master/releases/latest/download/TheoryDictationMaster.exe)** · **[All release files](https://github.com/Eipckz/theory-dictation-master/releases/latest)** · **[First five minutes](#your-first-five-minutes)**
+Practice melodic dictation on a computer, tablet, or phone. Nothing to install. Note entry is always silent, like writing on paper.
 
-![Theory Dictation Master home](docs/media/01-today.png)
+![Web home](docs/media/web-today.png)
 
 </div>
 
-## What this application is for
+## Start here
 
-Sometimes you can hear an isolated rhythm and recognize pitches in a key, yet following a melody's pitches makes its rhythm disappear from attention. This app targets that bridge:
+1. Open the app link above in a modern browser with JavaScript and Web Audio.
+2. Choose **Learn**. Hear a worked example, read the short explanation, then try guided entry.
+3. In **Practice**, choose a duration and tap a pitch button or the staff to add a note. Select a note to edit it. Adding, selecting, dragging, changing duration, tying, deleting and undoing notes never play sound.
+4. Tap **Hear phrase** when ready. Sound only starts from a playback button. Take your time entering what you retained.
+5. Choose **Save hearing draft** before another hearing. The draft preserves what you knew at that point.
+6. **Submit** compares rhythm, durations/rests, and pitch separately. Open **Target** only after submitting an unfamiliar exercise.
+7. Choose **Next phrase** for new evidence. **Settings** contains backups, private sync, and a reset button.
 
-**One-pitch rhythm → the same rhythmic work across two or three pitches → integrated transcription → reduced pulse support and paper practice.**
+Your first profile starts at the beginning with vocal rest enabled and no attempts. This app never uses your microphone.
 
-You place actual notes and rests on a staff. You can sketch a rhythm with unknown pitches, or record a pitch while leaving its duration uncertain. After submission, the app reports what happened to the rhythm independently of the pitch sequence. Accurate pitches cannot hide weak rhythm in the integrated result.
+## What it trains
 
-This is **v0.1.0, a working single-line core**. It is not a promise of mastery in three days or a finished implementation of every planned advanced module. See [what works and what comes next](docs/ROADMAP.md).
+Following pitches can distract you from rhythm. The progression carries simple rhythmic patterns through changing pitches before increasing rhythmic complexity:
 
-## See it in use
+| Target | Listening task |
+| --- | --- |
+| One-pitch durations | Hear attacks, sustain and silence relative to a steady beat |
+| Two-pitch bridge | Keep the rhythm while the melody moves between two notes |
+| Three-pitch integration | Retain contour and duration together |
+| Eighth-note division | Recognize subdivisions inside the beat |
+| Wider landmarks | Use pitch landmarks while following the whole phrase |
+| Dots and rests | Distinguish sustain, silence and the next attack |
+| Sixteenth cells | Keep beat grouping while hearing shorter patterns |
 
-![Animated walkthrough of the real application](docs/media/walkthrough.gif)
+Nine short lessons include orientation, pulse, the pitch/rhythm bridge, subdivisions, dots/rests, ties and paper transfer. Lesson examples are explicitly guided and cannot earn independent mastery. The orientation unlocks after adding a note and using Undo. Later Next lesson buttons require two unfamiliar passing checks; the lesson selector lets you revisit material freely.
 
-**[Watch or download the full-resolution walkthrough](https://github.com/Eipckz/theory-dictation-master/releases/latest/download/TheoryDictationMaster-walkthrough.mp4).** The 28-second silent walkthrough shows actual Qt captures. Its answers and completed hearing are scripted demonstration data, not a user's learning results. The full-resolution pictures below are easier to inspect than the compact GIF.
+**Three days is a practice structure, not a mastery promise.** Day one establishes pulse and a small pitched vocabulary. Day two integrates them and fades support. Day three tries unfamiliar paper and no-click conditions. Continue at your own pace afterward. Session timers suggest a break after submission; elapsed time never awards progress.
 
-<details>
-<summary><strong>Learning, entry, feedback and paper screenshots</strong></summary>
+![Worked lesson](docs/media/web-learn.png)
 
-### A lesson reconnects rhythm to pitches
+## Silent notation editor
 
-![Rhythm-through-pitch lesson](docs/media/02-learn.png)
+![Browser notation entry](docs/media/web-practice.png)
 
-### Begin with an empty staff
+- Choose whole, half, quarter, eighth, sixteenth, or unknown duration.
+- Set dot, rest, unknown pitch, natural, sharp or flat before adding a note.
+- Click/tap blank staff space to append at that pitch, or use the large pitch buttons.
+- Click an entered note to select it. Drag vertically or use Pitch up/down to move it silently.
+- Change settings and use **Apply to selected** to change its duration, accidental or rest state.
+- **Insert before** inserts ahead of the selected note. Turn it off to append again.
+- **Tie** joins to a following adjacent note of the same pitch. Invalid ties are flagged at grading.
+- **Undo / Redo** keeps up to 100 edits in the current browser session. Drafts and notes survive reload; the undo stack does not.
+- The staff grows horizontally and scrolls inside the paper area. It does not show empty slots matching the hidden target.
+- Unknown pitches/durations are explicit unfinished sketches. Resolve them for an integrated pass, except pitch is not required in rhythm-only assessment.
 
-![Blank clickable transcription staff](docs/media/03-blank.png)
+### Keyboard controls
 
-### Separate pitch and rhythm feedback
+Focus the staff first. C, D, E, F, G, A, B append notes in octave 4. Space appends at C4. Arrow left/right selects an entry; up/down changes pitch. T toggles a tie. Delete/Backspace removes a selected event. Ctrl/Cmd+Z undoes; Ctrl/Cmd+Shift+Z or Ctrl+Y redoes. Touch buttons provide the same basic operations on mobile.
 
-The demonstration below enters the correct pitch sequence with different durations. Notice that pitch credit is preserved while rhythm credit falls.
+### Playback
 
-![Independent pitch and rhythm feedback](docs/media/05-feedback.png)
+**Hear phrase**, **Hear tonic C reference**, **Hear on one pitch**, **Play my answer**, and **Hear worked example** are explicit sound controls. No editor operation calls audio playback. Assessment and paper modes disable answer audition and depitched aids before submission. Tonic reference use is recorded as assistance. Press **Stop** to interrupt. Leaving the page or switching away during target playback also stops it and marks the hearing assisted.
 
-### Compare the target after submission
+Hearing allowances apply before submission. Replays after feedback are review. An interrupted or failed hearing is consumed, cannot count as valid independent audio evidence, and requires a saved draft before continuing. Start a new phrase after an audio failure.
 
-![Target notation tab](docs/media/06-target.png)
+| Pulse support | What you hear |
+| --- | --- |
+| Subdivision | Four-beat count-in, then eighth-note clicks |
+| Beat | Count-in, then quarter-note clicks |
+| Dropout | Count-in, two beats of clicks, then your internal pulse |
+| Count-in only | Four clicks, then the phrase alone |
+| No clicks | Phrase without a count-in or continuing metronome |
 
-### Paper mode
+There is no animated beat cursor. The optional beat grid is static and disabled in assessments/paper mode. Generated audio uses a local harmonic synthesizer; no samples, microphone, streaming service or API key is needed for listening.
 
-![Paper mode with entry hidden](docs/media/07-paper.png)
+## Assessment and feedback
 
-### No-click assessment
+| Measure | Meaning |
+| --- | --- |
+| Attack timing | Match between target and entered sound onsets |
+| Durations / rests | Matching onset, duration and rest segments |
+| Pitch sequence | Pitch edit distance, assessed independently of rhythm |
+| Barline grouping | Whether your written durations stay within their bars |
+| Integrated | Lowest assessed listening component, or zero for an invalid/incomplete answer |
 
-![Assessment without a beat grid or pre-answer hints](docs/media/08-assessment.png)
+Valid ties merge into one sustained sound for listening comparison. Feedback identifies missing/extra attacks and rhythm-versus-pitch difficulties. Repeated pitches can produce ambiguous alignments; the app says so rather than inventing a precise diagnosis.
+
+Independent evidence excludes guided examples, aids, interrupted/invalid audio, paper self-checks, and imported-file evidence. Repeated melodies count once per comparison group. Automatic advancement requires two blocks of eight comparable unfamiliar items, with seven passes in each and at least 90% on every assessed listening component. Comparability includes target, BPM, bars, mode, support, hearing allowance, and rhythm-only status. Mixed-condition history is descriptive, not proof of improvement.
+
+Exploratory **Easier / Stay here / Challenge** choices are available without awarding confirmed levels. A rhythm-focused follow-up can retain a difficult rhythm while changing pitches; this is labeled assisted. The web release does not implement a calibrated spaced-repetition model or infer mastery from time spent.
+
+## Paper and classroom practice
+
+Select **Paper** in the next-phrase setup, then **Next phrase**. Print a blank staff sheet using the browser print dialog, or use your own manuscript paper. Hear the phrase under the selected allowance and write quietly.
+
+Choose **Enter my paper answer** to transcribe your handwriting for grading. Alternatively **Reveal for self-check** displays the target without pretending to grade handwriting. Self-checks cannot earn independent mastery. A separate printable answer key is available after submission. **Export exercise audio** downloads a WAV and marks pre-submission work assisted because outside replays cannot be counted.
+
+## Sync between devices
+
+Progress saves locally first. **Sync now** uploads and downloads progress through GitHub's API. It is an explicit action, not continuous background sync.
+
+The private repository [Eipckz/theory-dictation-progress](https://github.com/Eipckz/theory-dictation-progress) is configured for the owner's progress. Other users can create their own empty private repository and enter its owner/name.
+
+### One-time credential setup on each device
+
+1. In GitHub, open [Create a fine-grained personal access token](https://github.com/settings/personal-access-tokens/new?name=Dictation%20progress&contents=write).
+2. Select your account as resource owner. Choose **Only select repositories**, then select **theory-dictation-progress**. Choose an expiration date you can maintain.
+3. Under repository permissions, grant **Contents: Read and write**. Do not grant access to other repositories for this app.
+4. Generate the token. Copy it directly into **Settings > Repository access token** in the app. Do not put it into an issue, public file, chat, or progress backup.
+5. Tap **Sync now**. The status should show a success time. Repeat on your other device with a token restricted to the same private repository.
+
+The token is kept only in page memory. Closing/reloading the page or pressing Disconnect removes it; paste it again to sync. You may use separate restricted tokens for each device and revoke them independently in GitHub. The app will refuse public repositories. Progress is stored as `progress.json` in the private repository, visible to its collaborators and retained in Git history. It is not end-to-end encrypted.
+
+### Everyday workflow and conflicts
+
+- Tap **Sync now before switching devices**.
+- On the next device, open the app and tap **Sync now before editing**.
+- Completed attempts are merged by ID. Lesson passes are merged without duplicate entries.
+- The most recently changed device supplies the active draft and preferences. Only one active draft is retained. Sync or finish a phrase before working elsewhere. Keep device clocks accurate.
+- Concurrent uploads retry using GitHub's file SHA, so a changed cloud file is fetched again before writing.
+- Offline work is saved locally. A network/token/permission error leaves that work intact; retry when connected.
+- Keep occasional exported backups. Sync is not a substitute for archival backups.
+
+### Resetting progress
+
+**Settings > Reset progress** clears this browser's attempts, lesson checks and draft after a confirmation. Then **Sync now** to reset the cloud copy too. Other devices receive the reset on their next sync; an old offline copy cannot restore pre-reset progress. A reset does not erase historical Git commits. Browser credentials are not part of progress.
+
+![Settings and sync](docs/media/web-settings.png)
+
+## Backups, installation and offline use
+
+**Export progress backup** saves a JSON file. **Import a web backup** validates it, merges its attempts, and resumes its active draft. File-imported attempts stay visible but cannot silently manufacture new mastery. A pre-import recovery copy is available in Settings. Files from the old desktop SQLite app are not compatible with web JSON backups.
+
+After an online visit finishes caching, the service worker can reload the app offline. Open your browser menu and choose **Install** or **Add to Home Screen** when supported. The site does not need a Windows executable. Browser storage is specific to the browser and device; private browsing, storage eviction and clearing site data can remove it. Sync requires an internet connection. If the browser blocks sound, enable device/browser sound and tap an explicit playback button again.
+
+<details><summary>Phone view</summary>
+
+![Mobile practice](docs/media/web-mobile.png)
 
 </details>
 
-## Download and launch
+## Current scope and limits
 
-### Windows x64
+- Web v0.2.0: single-line dictation in C major, treble clef, 4/4, 1 to 4 bars, 40 to 160 BPM.
+- Generated lessons focus on a small diatonic range. The editor supports a wider range and accidentals.
+- Exact timing uses 12 integer ticks per quarter note. Dotted eighths and longer dotted values work; dotted sixteenths, tuplets and irregular meters are not implemented.
+- Barline grouping feedback is limited. It does not assess every engraving convention or enharmonic spelling.
+- Harmony/chord entry, two-part dictation, sing-back, microphone analysis, MusicXML import and full course customization remain planned. This release does not pretend to contain them.
+- Actual loudspeaker quality and physical iPhone/iPad hardware still depend on your device. Automated browser checks verify scheduling and audio startup, not your speaker volume or how it sounds to your ear.
+- The browser app and historical Python app have independent storage and implementations. The latest release is the web package. The [v0.1.0 Windows EXE](https://github.com/Eipckz/theory-dictation-master/releases/tag/v0.1.0) remains available as an archive.
 
-1. Download **[TheoryDictationMaster.exe](https://github.com/Eipckz/theory-dictation-master/releases/latest/download/TheoryDictationMaster.exe)**.
-2. Put it in a convenient application folder.
-3. Double-click it. Python and the required runtime libraries are bundled.
-4. Start with the **Learn** screen that opens on first launch.
+## Screenshots and earlier walkthrough media
 
-No account, API key, subscription, microphone, MIDI keyboard or internet connection is required for the core application. The single-file executable extracts its bundled libraries to a temporary directory at startup, which can make its first launch take a few seconds. It is an unsigned early release; Windows may show an unfamiliar-app prompt. Download from this repository's release page and use the matching checksum if you want to verify the file.
+The screenshots above show the actual web app with demonstration entries, not personal learning results. The earlier desktop edition's [animated walkthrough](docs/media/walkthrough.gif), [video and EXE release](https://github.com/Eipckz/theory-dictation-master/releases/tag/v0.1.0), and [desktop guide](docs/DESKTOP.md) are retained for reference. Their layout differs from this web release.
 
-```powershell
-Get-FileHash .\TheoryDictationMaster.exe -Algorithm SHA256
+## Development and deployment
+
+```sh
+npm ci
+npm test
+npx playwright install chromium webkit
+npx playwright test
+npm run serve
 ```
 
-Compare that hash with the release's `TheoryDictationMaster.exe.sha256`. Updates replace the EXE; progress is stored separately. There is no installer or automatic updater in this release.
+Open http://127.0.0.1:4173. No framework build is needed: `web/` is the deployable site. Serve over HTTP locally or HTTPS remotely; opening `index.html` as a `file:` URL does not support its module/service-worker workflow. Python tests and desktop development remain in the legacy source tree.
 
-### Your existing Music Theory Master is separate
+| Path | Purpose |
+| --- | --- |
+| `web/domain.js` | Exact score time, generator, grading, evidence rules |
+| `web/staff.js` | SVG notation using Bravura glyphs |
+| `web/audio.js` | PCM synthesis, WAV export, explicit Web Audio playback |
+| `web/store.js` | Local backup validation and import |
+| `web/sync.js` | Private GitHub storage, merge and reset handling |
+| `web/app.js` | Interface, lessons, drafts, silent editing and settings |
+| `web/sw.js` | Offline shell caching |
+| `web-tests/` | Determinism, grading, timing, sync and validation tests |
+| `browser-tests/` | Real browser entry, playback, paper, persistence, reset and sync UI |
 
-This application has a separate executable, source tree, app identity and database. It does not modify, replace, import or share Music Theory Master's live progress. The visual reference was [Music Theory Master](https://github.com/Eipckz/music-theory-master), inspected at revision `b880c55086f8822cb0ea70897e750b38180c1800`. [Reference audit and architecture](docs/ARCHITECTURE.md).
+Pushes to `main` run tests, package `web/`, and deploy GitHub Pages through Actions. Tags publish a web ZIP plus SHA-256 checksum. Changes can be made from any device using the GitHub web editor or Codespaces; no copy must remain on the original computer. Keep `sw.js` cache version current when changing offline assets.
 
-## Your first five minutes
+The test suite covers 700 generated phrases, rhythm/pitch separation, ties, unknowns, malformed backups, repeated-evidence exclusion, sync conflicts/reset generations, interrupted audio unlock, and real browser workflows. Windows local tests use Chromium and a mobile viewport. GitHub Pages deployment additionally runs WebKit on Linux because the bundled Windows WebKit does not provide Web Audio. Mobile emulation is not physical-device certification. Live private-repository sync was checked for a cross-device round trip and reset protection; UI network failure and credential handling are also tested with controlled API responses.
 
-### 1. Learn the editor without being graded
+## Licensing and reference
 
-Open **Learn → 0. First marks on the staff**. Read the brief explanation and press **Hear worked example**. Then choose **Try guided entry**.
+GPL-3.0, see [LICENSE](LICENSE). The UI and teaching progression were developed from the separately preserved [Music Theory Master](https://github.com/Eipckz/music-theory-master) reference. Its original application and progress database are untouched. See the [desktop guide](docs/DESKTOP.md) for the reference revision and original build notes.
 
-- Select **Quarter** and click a staff position.
-- Select an existing note and press Up or Down to move it.
-- Press **Undo** to reverse an entry or edit.
-- Return to Learn and press **Finish interface tutorial**.
-
-The tutorial checks that you entered something and used Undo. It does not measure your ear or award independent mastery.
-
-### 2. Establish the pulse
-
-Use **Next lesson** for the pulse lesson. Hear the worked example, then try guided entry. With a quarter-note beat, a quarter lasts one beat and a half lasts two. A rest occupies time silently. Keep counts and any conducting internal or silent.
-
-Choose **Independent check** when ready. For each lesson after the tutorial, two unfamiliar independent checks with at least 90% on every assessed component unlock the Next lesson button. You can browse lesson topics manually; browsing is not a mastery claim.
-
-### 3. Hear, write, save a draft
-
-In Practice:
-
-1. Check the key, meter, bars, tempo and pulse support shown above the staff.
-2. Use **Hear tonic C reference** if useful. The reference is a permitted cue.
-3. Press **Hear phrase**.
-4. After playback, take the writing time you need. Enter any rhythm or pitch landmarks you retained.
-5. Press **Save hearing draft**. This enables the next hearing, subject to the displayed allowance.
-6. Continue listening and revising, or choose a confidence rating and submit.
-
-Writing speed is not scored. A draft captures what you entered after a hearing; it does not claim to measure everything you recognized mentally during that hearing. Stopping playback consumes that exposure and marks the attempt assisted.
-
-### 4. Read the components
-
-Press **Submit transcription**. Read the first useful correction. Compare **Your answer** with **Target after submission**. Play the target, your answer and the one-pitch version to isolate what changed. Use **Targeted follow-up** to practice the same rhythm with different pitches, then **Next phrase** for unfamiliar practice.
-
-## Staff entry and correction
-
-The primary editor is sequential: each click in empty staff space appends an event. Click an existing note to select it. Notes are never preallocated according to the answer key.
-
-| Control | What it does |
-|---|---|
-| Whole / Half / Quarter / Eighth / Sixteenth | Sets the next event's duration |
-| Dot | Adds half the selected base duration |
-| Natural / Sharp / Flat | Sets the written accidental |
-| Rest | Adds intentional silence with the chosen duration |
-| Unknown pitch | Keeps pitch explicitly incomplete while you capture rhythm |
-| Unknown duration | Keeps duration explicitly incomplete while you capture pitch |
-| Apply to selected | Applies duration, dot, rest and accidental settings to a selected event |
-| Drag a selected note vertically | Changes its pitch |
-| Insert before | Places the next event before the selected note |
-| Tie | Toggles a tie from the selected note to the next note |
-| Delete | Removes the selected event |
-| Undo / Redo | Restores previous editor states |
-| Beat grid | Displays a neutral beat guide in Practice only |
-
-A valid tie needs a following note of the same sounding pitch. A half note and two tied quarters can receive equivalent sound credit. Two untied quarters contain an extra attack.
-
-Unknown durations use provisional spacing, but they do not silently become one-beat answers. Duration changes preserve all entered events, even if they overfill the phrase. The entry line shows your total against the stated phrase length. Dense notation scrolls horizontally.
-
-### Keyboard alternatives
-
-Click or Tab into the staff first.
-
-| Key | Action |
-|---|---|
-| A through G | Append that natural note in octave 4 with the selected duration |
-| Space | Append middle C with the selected duration |
-| Left / Right | Select the preceding or following event |
-| Up / Down | Move the selected pitch by one staff step |
-| R | Append a rest |
-| T | Toggle tie to the next note |
-| Delete / Backspace | Delete the selected event |
-| Ctrl+Z / Ctrl+Y | Undo / redo |
-
-The current grid is a visual scaffold, not a free-position beat-grid editor. Tuplets, multiple voices, pickups and polished cross-bar engraving are not yet available.
-
-## Practice, assessment and paper
-
-| Mode | Before submission | How it counts |
-|---|---|---|
-| Practice | Beat grid is optional. Answer playback and one-pitch hints are available. | Unassisted complete work can count independently. Using assistance is logged. |
-| Assessment | Grid, answer playback, target notation and one-pitch hints are unavailable. | Completed independent evidence under the stated conditions. |
-| Paper | Entry starts hidden. Listen and write on paper. | Enter the answer before revealing it for scoring, or choose a labeled self-check. |
-
-Changes to level, mode, support, BPM, bars or hearing allowance apply to **the next phrase**. The current phrase retains its original conditions. A new phrase abandons any unfinished entered/heard attempt while keeping its record.
-
-### Metronome support
-
-- **Subdivision clicks:** two clicks per quarter-note beat in the visible 4/4 course.
-- **Beat clicks:** continuing quarter-note clicks.
-- **Dropout:** count-in, then clicks for the beginning of the phrase only.
-- **Count-in only:** a measure of clicks before the phrase; no continuing metronome.
-- **No clicks:** no count-in or ongoing pulse; the stated BPM supplies the intended tempo context.
-
-There are no bouncing cursors, beat flashes, timed highlights or scrolling playheads. Turning off clicks does not leave a hidden visual metronome. The neutral grid is also disabled in assessment and paper modes.
-
-### Paper workflow
-
-1. Choose Paper and start a new phrase.
-2. Prepare key, meter and barlines on paper.
-3. Listen, write and save each hearing draft to unlock the next hearing. The app cannot see your handwriting.
-4. Choose **Enter paper answer** to transcribe your paper work into the editor before submission.
-5. Alternatively, choose **Reveal for paper self-check**. This records a self-check, with no automatic handwriting score or mastery credit.
-
-**Export audio + blank sheet** produces a WAV and a blank PDF with the same neutral ID. The separate answer-key export becomes available only after submission/reveal. Exported listening is unobserved, so exporting before submission marks the attempt assisted. Playback rounds and writing intervals are manually controlled in this release.
-
-## How feedback works
-
-| Result | Meaning |
-|---|---|
-| Attack timing | Did your notes begin at the correct exact score-time positions? |
-| Durations / rests | Did your sound and silence segments have the correct positions and lengths? |
-| Pitch sequence | How many pitch insertions, omissions or substitutions separate your sequence from the target? |
-| Notation conventions | A separate, coarse check of spelling and barline grouping |
-| Integrated | The weakest assessed listening component |
-
-Pitch grading uses sequence alignment, so one omission does not automatically mark every subsequent pitch wrong. Rhythm grading ignores the pitches. Equivalent valid ties are merged for sound comparison. Ambiguous pitch alignments are identified. Feedback describes score time in quarter-note units from the beginning, with zero as the first onset.
-
-**Assess rhythm only** omits pitch from the assessment. Unknown pitches are accepted in a complete rhythm-only answer. Unknown durations remain incomplete. Audio failure does not count as a wrong answer or an independent success.
-
-[Exact formulas, equivalent notation and adaptation rules](docs/GRADING.md).
-
-## Learning path and three-day use
-
-The course starts with staff orientation and pulse. Practice then progresses through one-pitch durations, the two-pitch bridge, three-pitch integration, eighth-note division, wider pitch landmarks, dotted values/rests and sixteenth cells. Each level transition primarily changes pitch or rhythm vocabulary. Tempo, phrase length and pulse support remain separate controls.
-
-The Today page offers flexible **15, 20 or 25 minute blocks**, plus an **8-minute low-energy option**. A planned block is a reminder, not a time-based promotion rule.
-
-- **Day 1:** learn the interface and pulse from zero; identify the rhythm-with-pitches bottleneck; try a small integrated phrase.
-- **Day 2:** review unfamiliar material at comparable settings, target a recurring rhythm confusion, and reduce one support when ready.
-- **Day 3:** repeat comparable conditions, try earned no-click or paper work, and identify the next review need.
-
-Rhythm-first is a temporary scaffold. You can capture an obvious pitch immediately, retain a contour, or work from the whole phrase. No singing or audible counting is required. **Vocal rest is on initially**, and no microphone is opened by this core release.
-
-### What counts as progress
-
-Confirmed advancement initially requires two blocks of eight unfamiliar independent exercises, with at least seven passing in each block and every assessed pitch/rhythm component at least 90%. This is an adjustable engineering heuristic, not a scientifically validated threshold. The confirmed level advances one step.
-
-Assisted work is useful practice, but cannot establish independent mastery. Repeated target content cannot multiply mastery credit. Easier, Stay here and Challenge let you choose exploratory practice. The Progress page shows evidence counts, recent descriptive component results and saved first-draft comparisons.
-
-Current review reminders are set roughly 20 minutes after a submission. Full later-day scheduling, retained-learning labels, eight distinct skill estimators and matched benchmark charts are planned. The current app does not claim those features are finished.
-
-## Saved progress, backup and portable use
-
-Default Windows data location:
-
-```text
-%LOCALAPPDATA%\TheoryDictationMaster\progress.sqlite3
-```
-
-The active answer, hearing drafts and settings are saved locally. Use **Settings → Back up progress** to create a SQLite backup. Restore checks the backup and creates a safety backup of the previous data first. Restart after restoration to refresh all profile preferences. **Progress → Export complete evidence JSON** exports the detailed attempt records.
-
-For explicit portable data:
-
-```powershell
-.\TheoryDictationMaster.exe --data-dir "D:\DictationPractice\data"
-```
-
-Choose a reliable local directory. The app has no synchronization layer or support for multiple running copies writing the same database. To uninstall, delete the EXE. Keep the data folder if you want to retain progress.
-
-## Troubleshooting
-
-**No sound:** check the Windows output device and volume, then try Hear tonic C reference. The application uses the default output device. An audio exception is shown and invalidates independent credit for that attempt. Start a new phrase after correcting the device problem. A successful output API call does not prove that speakers were audible.
-
-**Hear phrase is disabled:** finish playback, enter what you retained and press Save hearing draft. If the allowed hearings are used, submit or start another phrase.
-
-**The notes do not add up:** select an event and apply its intended duration; check dots and rests. Nothing is silently filled from the target. Use Undo if an edit was accidental.
-
-**A note looks wrong:** confirm duration and accidental, then use Apply to selected. Small values are beamed within beats. Longer and dense phrases may require horizontal scrolling.
-
-**The target tab is missing:** it becomes available after submission, or during a clearly assisted worked example.
-
-**The window feels crowded:** enlarge it or scroll the staff/coaching panel. Screenshots were inspected at normal and 150% display scaling, including a smaller window. Light appearance is available in Settings. Comprehensive screen-reader auditing is still pending.
-
-**Progress cannot open:** the app leaves the original file in place. Use a separate `--data-dir` to launch, then restore a known good backup. Recoverable UI errors are written to `error.log` in the data directory.
-
-## Build or run from source
-
-Python 3.14 x64 was used for the Windows build. Development dependency installation needs internet access; the completed runtime does not.
-
-```powershell
-git clone https://github.com/Eipckz/theory-dictation-master.git
-cd theory-dictation-master
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe run.py
-```
-
-Run tests and the interactive Qt smoke test with an isolated temporary data folder:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe run.py --self-test
-```
-
-Build the standalone Windows EXE:
-
-```powershell
-.\build-windows.ps1
-```
-
-The result is `dist\TheoryDictationMaster.exe`. GitHub Actions runs tests on pushes and can build/attach an executable for version tags. No cloud service is part of the application runtime.
-
-## Verification and honest limits
-
-- 39 automated tests cover 2,100 seeded generation cases, fixed rhythm arithmetic, independent grading, ties, rests, tempo units, audio buffers, persistence, backup recovery and GUI policy.
-- A packaged fresh-data smoke test exercises Qt mouse entry, duration editing, undo/redo, grading, idempotence, restart persistence and exports.
-- Real screenshots were inspected. The output driver completed a representative playback without reporting an error.
-- The builder did **not** independently listen to the audio, validate microphone recording, prove learning effectiveness or complete a full accessibility audit.
-
-[Validation record](docs/VALIDATION.md) · [Architecture](docs/ARCHITECTURE.md) · [Grading](docs/GRADING.md) · [Roadmap](docs/ROADMAP.md)
-
-## Contributing and license
-
-Bug reports should include the app version, what happened, the expected result and, when useful, an exported neutral exercise/attempt record. Review exports before sharing: they can contain your answers and confidence history. Do not upload your entire private progress database by default.
-
-The application is GPL-3.0-only. [License](LICENSE) · [Dependency and reference notices](THIRD-PARTY-NOTICES.md).
-
+Bravura is distributed under the SIL Open Font License, bundled in [web/fonts/OFL.txt](web/fonts/OFL.txt). Music glyphs are local, so notation renders without a font CDN. GitHub tokens are never bundled in the public repository, release, site or backups.

@@ -1,4 +1,4 @@
-name: Windows release
+name: Web release
 on:
   workflow_dispatch:
   push:
@@ -6,35 +6,26 @@ on:
 permissions:
   contents: write
 jobs:
-  build:
-    runs-on: windows-latest
+  package:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.14'
-      - run: python -m pip install -r requirements-dev.txt
-      - run: python -m pytest -q
-      - run: python -m PyInstaller --noconfirm --clean TheoryDictationMaster.spec
-      - name: Test packaged executable
-        shell: pwsh
+          node-version: '24'
+      - run: npm ci && npm test
+      - name: Package standalone site
         run: |
-          $data = Join-Path $env:RUNNER_TEMP 'tdm-package-smoke'
-          $p = Start-Process -FilePath dist/TheoryDictationMaster.exe -ArgumentList @('--self-test','--data-dir',$data) -Wait -PassThru -WindowStyle Hidden
-          if ($p.ExitCode -ne 0) { throw 'Packaged self-test failed' }
-          if (-not (Test-Path (Join-Path $data 'self-test.json'))) { throw 'Missing self-test evidence' }
-          $hash = (Get-FileHash dist/TheoryDictationMaster.exe -Algorithm SHA256).Hash.ToLower()
-          "$hash  TheoryDictationMaster.exe" | Set-Content dist/TheoryDictationMaster.exe.sha256
-      - uses: actions/upload-artifact@v4
-        with:
-          name: TheoryDictationMaster-Windows
-          path: dist/*
-      - name: Attach to tagged release
+          mkdir -p dist
+          cp LICENSE web/LICENSE
+          cd web
+          zip -r ../dist/TheoryDictationMaster-Web.zip .
+          cd ../dist
+          sha256sum TheoryDictationMaster-Web.zip > TheoryDictationMaster-Web.zip.sha256
+      - name: Publish tagged release
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: pwsh
         run: |
-          gh release view $env:GITHUB_REF_NAME
-          if ($LASTEXITCODE -ne 0) { gh release create $env:GITHUB_REF_NAME --title "Theory Dictation Master $env:GITHUB_REF_NAME" --notes-file docs/RELEASE.md }
-          gh release upload $env:GITHUB_REF_NAME dist/TheoryDictationMaster.exe dist/TheoryDictationMaster.exe.sha256 --clobber
+          gh release view "$GITHUB_REF_NAME" || gh release create "$GITHUB_REF_NAME" --title "Theory Dictation Master $GITHUB_REF_NAME | Web edition" --notes-file docs/RELEASE.md
+          gh release upload "$GITHUB_REF_NAME" dist/* --clobber
