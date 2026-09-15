@@ -1,1 +1,1 @@
-{"name":"theory-dictation-master","version":"1.1.3","private":true,"type":"module","scripts":{"test":"node --test web-tests/*.test.js","serve":"node tools/serve-web.js"},"devDependencies":{"@playwright/test":"^1.63.0"}}
+{"name":"theory-dictation-master","version":"1.1.4","private":true,"type":"module","scripts":{"test":"node --test web-tests/*.test.js","serve":"node tools/serve-web.js"},"devDependencies":{"@playwright/test":"^1.63.0"}}

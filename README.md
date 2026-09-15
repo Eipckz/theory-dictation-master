@@ -15,7 +15,7 @@ Practice melodic dictation on a computer, tablet, or phone. Nothing to install. 
 
 </div>
 
-## New in 1.1.3: equivalent rests receive equal credit
+## New in 1.1.4: equivalent rests receive equal credit
 
 Listening assessment merges adjacent rests into their continuous silence. Two quarter rests equal one half rest; four quarter rests equal a whole rest in 4/4 when they occupy the same span. Splitting or combining silence does not change duration accuracy. A held note is still different from silence, and moving a rest changes the rhythm.
 
